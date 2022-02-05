@@ -1,6 +1,6 @@
 # Analysis of Variance 
 
-### Anova hypothesis testing application that will ease your decision-making! :sparkles:
+### Anova hypothesis testing application that will ease your decision-making! :sparkles::woman_technologist:
 
 In this **Statistical Anova Hypothesis Testing Application**:
 - The instructions will be written down in the beginning of the application in order to guide the user
