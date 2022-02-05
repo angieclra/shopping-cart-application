@@ -1,21 +1,17 @@
-# Pomodoro Technique Timer
+# Reject or Fail to Reject? 
 
-## A timer to help you study more effectively
+### A hypothesis testing application that will ease you in determining your conclusion!
 
-In this **Pomodoro Timer**:
-- When the start button is pressed, the timer will start
-- When the timer reaches zero, the timer will stop
-- One completed work session will always be followed by a break afterwards
-- The duration for both the work and break session can be adjusted accordingly
-  (however it's recommended to set it the work session to 25 minutes and break session to 5 minutes)
-- Reset button to reset the timer
-- User will be able to see how long they have done their work session
+In this **Hypothesis Testing Application**:
+- Ask the user to input data (minimum of 30, assuming Normality)
+- Choose the null hypothesis and alternative hypothesis
+- The alternative hypothesis could be 
+- Choose the significance level (options: 0.10, 0.05, 0.01)
+- This application will then run and decide whether we should reject or fail to reject the null hypothesis
 
-This Java desktop application will mostly be targeted to student, for all ages. 
-It could also be used to anyone who wants to focus on doing their tasks without any distractions.
-The pomodoro technique is known to be highly effective to help people manage their time
-more wisely and disciplined. This project interests me since I have always implemented
-this Pomodoro technique, and I found it helpful for me in finishing all my to-do list for the day.
-From my point of view, having to work in a short period of time makes it easier to start, especially when it 
-comes to monotonous tasks. I personally like to track how long I study, hence by this project, I can then 
-use my own timer and set it to my own preferences.
+This Java desktop application will mostly be targeted to all, especially those
+who fancy the Statistics and Data Science field.
+This project interest me since I myself is deeply fascinated with the Statistics and Data Science field.
+I'm a Statistics major myself and by making this application, it can help me in doing Hypothesis Testing without 
+going through the rough work on my own!
+
