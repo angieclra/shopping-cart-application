@@ -82,4 +82,5 @@ class ShoppingCartTest {
         assertEquals(2, testShoppingCart.getNumItem());
         assertEquals(4.00, testShoppingCart.getPriceAltogether());
     }
+
 }

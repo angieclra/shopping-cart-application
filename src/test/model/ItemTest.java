@@ -21,5 +21,23 @@ public class ItemTest {
         assertEquals(1.99, testItem.getItemPrice());
     }
 
+    @Test
+    public void testSetItemName() {
+        testItem.setItemName("apple");
+        assertEquals("apple", testItem.getItemName());
+    }
+
+    @Test
+    public void testSetItemQuantity() {
+        testItem.setItemQuantity(3);
+        assertEquals(3, testItem.getItemQuantity());
+    }
+
+    @Test
+    public void testSetPrice() {
+        testItem.setPrice(1.9);
+        assertEquals(1.9, testItem.getItemPrice());
+    }
+
 }
 
