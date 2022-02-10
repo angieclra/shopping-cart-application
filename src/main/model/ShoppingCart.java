@@ -48,14 +48,14 @@ public class ShoppingCart {
         return price;
     }
 
-    public String invoiceReceipt() {
-        String contents = "\nINVOICE\n";
-        contents += "\nItem\tName\tPrice";
-
-        for (int i = 0; i < shoppingCartItems.size(); i++) {
-            contents += shoppingCartItems.get(i).toString() + "\n";
-            System.out.println("\n Total Price:" + price);
-        }
-        return contents;
-    }
+//    public String invoiceReceipt() {
+//        String contents = "\nINVOICE\n";
+//        contents += "\nItem\tName\tPrice";
+//
+//        for (int i = 0; i < shoppingCartItems.size(); i++) {
+//            contents += shoppingCartItems.get(i).toString() + "\n";
+//            System.out.println("\n Total Price:" + price);
+//        }
+//        return contents;
+//    }
 }

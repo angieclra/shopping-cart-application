@@ -27,9 +27,9 @@ public class ShoppingCartApp {
 
             if (command.equals("6")) {
                 keepGoing = false;
-            } else if (command.equals("5")) {
-                doFinishShopping();
-                keepGoing = false;
+//            } else if (command.equals("5")) {
+//                doFinishShopping();
+//                keepGoing = false;
             } else {
                 processCommand(command);
             }
@@ -116,9 +116,9 @@ public class ShoppingCartApp {
         System.out.println("\n" + "Total cost for this purchase is: " + cart.getPriceAltogether());
     }
 
-    private void doFinishShopping() {
-        System.out.println("\n" + cart.invoiceReceipt());
-      //  System.out.println(testShoppingCart);
-    }
+//    private void doFinishShopping() {
+//        System.out.println("\n" + cart.invoiceReceipt());
+//      //  System.out.println(testShoppingCart);
+//    }
 
 }
