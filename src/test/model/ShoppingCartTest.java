@@ -33,16 +33,27 @@ class ShoppingCartTest {
 
     @Test
     public void testRemoveFromCart() {
-        testShoppingCart.addToCart("Apple", 3, 1.99);
+        testShoppingCart.addToCart("Apple", 3, 1);
         testShoppingCart.removeFromCart("Apple", 2);
         assertEquals(1, testShoppingCart.getNumItem());
+        assertEquals(1, testShoppingCart.getPriceAltogether());
     }
 
     @Test
-    public void testRemoveIfQuantityZero() {
+    public void testRemoveFromCartWhenQuantityZero() {
         testShoppingCart.addToCart("Apple", 1, 1.00);
         testShoppingCart.removeFromCart("Apple",0);
         assertEquals(1, testShoppingCart.getNumItem());
+        assertEquals(1.00, testShoppingCart.getPriceAltogether());
+    }
+
+    @Test
+    public void testRemoveFromCartWhenItemIsNotThere() {
+        testShoppingCart.addToCart("Apple", 1, 2);
+        testShoppingCart.addToCart("Chocolate", 1, 1);
+        testShoppingCart.removeFromCart("Orange", 1);
+        assertEquals(2, testShoppingCart.getNumItem());
+        assertEquals(3, testShoppingCart.getPriceAltogether());
     }
 
     @Test
