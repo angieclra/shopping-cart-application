@@ -1,21 +1,16 @@
 package model;
 
-import ui.ShoppingCartApp;
-
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class ShoppingCart {
 
     private ArrayList<Item> shoppingCartItems;
     private double price;
+    private String name;
 
     public ShoppingCart() {
         shoppingCartItems = new ArrayList<>();
-    }
-
-    public void deleteItem(Item i) {
-        shoppingCartItems.remove(i);
     }
 
     public void addToCart(String name, int quantity, double price) {
@@ -23,7 +18,26 @@ public class ShoppingCart {
             Item item = new Item(name, quantity, price);
             shoppingCartItems.add(item);
         }
+        this.name = name;
         this.price += (price * quantity);
+    }
+
+    public void deleteFromCart(String name, int quantity) {
+        for (int i = 0; i < getNumItem(); i++) {
+            Item item = shoppingCartItems.get(i);
+            if (quantity != 0) {
+                if (item.getItemName().equals(name)) {
+                    shoppingCartItems.remove(i);
+                    quantity--;
+                }
+            } else {
+                break;
+            }
+        }
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getNumItem() {
@@ -34,14 +48,14 @@ public class ShoppingCart {
         return price;
     }
 
-//    public String toString() { // print invoice???
-//        String contents = "\nShopping Cart\n";
-//        contents += "\nItem\tName\tPrice";
-//
-//        for (int i = 0; i < numItem; i++) {
-//            contents += shoppingCartItems.get(i).toString() + "\n";
-//            System.out.println("\n Total Price:" + price);
-//        }
-//        return contents;
-//    }
+    public String invoiceReceipt() {
+        String contents = "\nINVOICE\n";
+        contents += "\nItem\tName\tPrice";
+
+        for (int i = 0; i < shoppingCartItems.size(); i++) {
+            contents += shoppingCartItems.get(i).toString() + "\n";
+            System.out.println("\n Total Price:" + price);
+        }
+        return contents;
+    }
 }

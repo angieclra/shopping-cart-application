@@ -5,6 +5,7 @@
 In this **Shopping Cart Manager Application**:
 - The instruction and display menu of the shopping cart manager will be shown 
 - Ask the user to add items into the shopping cart
+- Give the user an option to remove items from the cart
 - Name the items that the user bought
 - Calculate the total items that is in the shopping cart
 - Calculate the total price of the whole shopping cart
@@ -19,3 +20,4 @@ cart project interest me since it's crucial and practical for our daily lives.
 - As a user, I want to be able to remove items from the shopping cart
 - As a user, I want to be able to see the total items in the shopping cart
 - As a user, I want to be able to see the total price in the shopping cart
+- As a user, I want to be able to see the invoice for my shopping

@@ -35,9 +35,5 @@ public class Item {
     public double getItemPrice() {
         return itemPrice;
     }
-//
-//    public String toString() { // do i need this??????
-//        return itemName + " price: " + itemPrice + " qty: " + itemQuantity;
-//    }
 
 }
