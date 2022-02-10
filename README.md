@@ -1,6 +1,6 @@
 # Treat Your Self
 
-### Shopping cart app to make your shopping life easier! :sparkles:
+### A shopping cart app to make your shopping life easier! :sparkles:
 
 In this **Shopping Cart Manager Application**:
 - The instruction and display menu of the shopping cart manager will be shown 

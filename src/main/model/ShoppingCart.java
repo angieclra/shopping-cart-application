@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Locale;
 
 public class ShoppingCart {
 
@@ -10,7 +10,7 @@ public class ShoppingCart {
     private String name;
 
     public ShoppingCart() {
-        shoppingCartItems = new ArrayList<>();
+        shoppingCartItems = new ArrayList<Item>();
     }
 
     public void addToCart(String name, int quantity, double price) {
@@ -22,19 +22,25 @@ public class ShoppingCart {
         this.price += (price * quantity);
     }
 
-    public void deleteFromCart(String name, int quantity) {
+    public void removeFromCart(String name, int quantity) {
         for (int i = 0; i < getNumItem(); i++) {
             Item item = shoppingCartItems.get(i);
-            if (quantity != 0) {
-                if (item.getItemName().equals(name)) {
+            if (item.getItemName().equals(name)) {
+                if (quantity != 0) {
                     shoppingCartItems.remove(i);
-                    quantity--;
+                    quantity = quantity - 1;
+                    price = getPriceAltogether() - item.getItemPrice();
+//                } else {
+//                    System.out.println("No item named " + name + " found in the cart. "
+//                            + "Nothing is removed from the cart.");
+//                }
+                } else {
+                    break;
                 }
-            } else {
-                break;
             }
         }
     }
+
 
     public String getName() {
         return name;
@@ -48,14 +54,16 @@ public class ShoppingCart {
         return price;
     }
 
-//    public String invoiceReceipt() {
-//        String contents = "\nINVOICE\n";
-//        contents += "\nItem\tName\tPrice";
-//
-//        for (int i = 0; i < shoppingCartItems.size(); i++) {
-//            contents += shoppingCartItems.get(i).toString() + "\n";
-//            System.out.println("\n Total Price:" + price);
-//        }
-//        return contents;
-//    }
+    public String invoiceReceipt() {
+        String content;
+
+        content = "INVOICE\n" + "_____________";
+        for (int i = 0; i < getNumItem(); i++) {
+            content += "\nName: " + shoppingCartItems.get(i).getItemName().toUpperCase(Locale.ROOT) + "\nPrice: $"
+                    + shoppingCartItems.get(i).getItemPrice() + "\n--------------";
+        }
+        return content;
+    }
+
 }
+

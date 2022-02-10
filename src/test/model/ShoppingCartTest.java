@@ -3,10 +3,6 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShoppingCartTest {
@@ -36,21 +32,54 @@ class ShoppingCartTest {
     }
 
     @Test
-    public void testDeleteFromCart() {
+    public void testRemoveFromCart() {
         testShoppingCart.addToCart("Apple", 3, 1.99);
-        testShoppingCart.deleteFromCart("Apple", 2);
+        testShoppingCart.removeFromCart("Apple", 2);
         assertEquals(1, testShoppingCart.getNumItem());
     }
 
     @Test
-    public void testDeleteFromCartMore() {
+    public void testRemoveFromCartMore() {
         testShoppingCart.addToCart("Apple", 2, 1.99);
         testShoppingCart.addToCart("Apple", 5, 2.00);
         assertEquals(7, testShoppingCart.getNumItem());
-        testShoppingCart.deleteFromCart("Apple", 2);
+        testShoppingCart.removeFromCart("Apple", 2);
         assertEquals(5, testShoppingCart.getNumItem());
-        testShoppingCart.deleteFromCart("Apple", 3);
+        testShoppingCart.removeFromCart("Apple", 3);
         assertEquals(2, testShoppingCart.getNumItem());
     }
 
+    @Test
+    public void testGetNumItem() {
+        testShoppingCart.addToCart("Apple", 3, 2.00);
+        testShoppingCart.addToCart("Orange", 4, 5.00);
+        assertEquals(7, testShoppingCart.getNumItem());
+    }
+
+    @Test
+    public void testGetPriceAltogether() {
+        testShoppingCart.addToCart("Apple", 3, 2.00);
+        testShoppingCart.addToCart("Orange", 4, 5.00);
+        assertEquals(26.00, testShoppingCart.getPriceAltogether());
+    }
+
+    @Test
+    public void testGetPriceAltogetherWithRemove() {
+        testShoppingCart.addToCart("Banana", 5, 4.00);
+        testShoppingCart.addToCart("Banana", 6, 5.00);
+        testShoppingCart.removeFromCart("Banana", 2);
+        assertEquals(42.00, testShoppingCart.getPriceAltogether());
+    }
+
+    @Test
+    public void testGetPriceAltogetherWithRemove2() {
+        testShoppingCart.addToCart("Apple", 2, 1.99);
+        testShoppingCart.addToCart("Apple", 5, 2.00);
+        assertEquals(7, testShoppingCart.getNumItem());
+        testShoppingCart.removeFromCart("Apple", 2);
+        assertEquals(5, testShoppingCart.getNumItem());
+        testShoppingCart.removeFromCart("Apple", 3);
+        assertEquals(2, testShoppingCart.getNumItem());
+        assertEquals(4.00, testShoppingCart.getPriceAltogether());
+    }
 }

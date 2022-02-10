@@ -2,6 +2,7 @@ package ui;
 
 import model.ShoppingCart;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ShoppingCartApp {
@@ -27,14 +28,14 @@ public class ShoppingCartApp {
 
             if (command.equals("6")) {
                 keepGoing = false;
-//            } else if (command.equals("5")) {
-//                doFinishShopping();
-//                keepGoing = false;
+            } else if (command.equals("5")) {
+                doFinishShopping();
+                keepGoing = false;
             } else {
                 processCommand(command);
             }
         }
-        System.out.println("\nSee you again, thank you!");
+        System.out.println("\nSee you again, thank you for shopping with us!");
     }
 
     private void processCommand(String command) {
@@ -93,11 +94,11 @@ public class ShoppingCartApp {
         answer = sc.next();
 
         if (answer.equals("y")) {
-            System.out.println("Name of item you would like to remove: ");
+            System.out.println("Name of item you would like to remove:");
             name = sc.next();
             System.out.println("How many " + name + " do you want to remove?");
             quantity = sc.nextInt();
-            cart.deleteFromCart(name, quantity);
+            cart.removeFromCart(name, quantity);
             System.out.println(name + " successfully removed from cart.");
         } else if (answer.equals("n")) {
             System.out.println("Please pick another option to proceed.");
@@ -113,12 +114,11 @@ public class ShoppingCartApp {
     }
 
     private void doTotalCost() {
-        System.out.println("\n" + "Total cost for this purchase is: " + cart.getPriceAltogether());
+        System.out.println("\n" + "Total cost for this purchase is: $" + cart.getPriceAltogether());
     }
 
-//    private void doFinishShopping() {
-//        System.out.println("\n" + cart.invoiceReceipt());
-//      //  System.out.println(testShoppingCart);
-//    }
+    private void doFinishShopping() {
+        System.out.println("\n" + cart.invoiceReceipt() + "\nTotal: $" + cart.getPriceAltogether());
+    }
 
 }
