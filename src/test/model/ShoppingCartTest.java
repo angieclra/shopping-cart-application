@@ -39,6 +39,13 @@ class ShoppingCartTest {
     }
 
     @Test
+    public void testRemoveIfQuantityZero() {
+        testShoppingCart.addToCart("Apple", 1, 1.00);
+        testShoppingCart.removeFromCart("Apple",0);
+        assertEquals(1, testShoppingCart.getNumItem());
+    }
+
+    @Test
     public void testRemoveFromCartMore() {
         testShoppingCart.addToCart("Apple", 2, 1.99);
         testShoppingCart.addToCart("Apple", 5, 2.00);
@@ -81,6 +88,13 @@ class ShoppingCartTest {
         testShoppingCart.removeFromCart("Apple", 3);
         assertEquals(2, testShoppingCart.getNumItem());
         assertEquals(4.00, testShoppingCart.getPriceAltogether());
+    }
+
+    @Test
+    public void testPrintInvoice() {
+        testShoppingCart.addToCart("Apple", 1, 3.99);
+        assertEquals("INVOICE\n_____________\nName: APPLE\nPrice: $3.99\n--------------",
+                testShoppingCart.printInvoice());
     }
 
 }

@@ -16,6 +16,7 @@ and a big part of people's life as it makes grocery shopping a lot easier. This 
 cart project interest me since it's crucial and practical for our daily lives.
 
 ## User Stories
+- As a user, I want to be able to view the menu for all the possible options of the application
 - As a user, I want to be able to add items to the shopping cart
 - As a user, I want to be able to remove items from the shopping cart
 - As a user, I want to be able to see the total items in the shopping cart

@@ -3,16 +3,19 @@ package model;
 import java.util.ArrayList;
 import java.util.Locale;
 
+// Represents a shopping cart with the items purchased in it
 public class ShoppingCart {
-
-    private ArrayList<Item> shoppingCartItems;
-    private double price;
+    private ArrayList<Item> shoppingCartItems; // array list consisting of the items (objects)
+    private double price; // add fields to represent changing properties of a shopping cart
     private String name;
 
+    // EFFECTS: constructs shopping cart
     public ShoppingCart() {
         shoppingCartItems = new ArrayList<Item>();
     }
 
+    // MODIFIES: this
+    // EFFECTS: add item to cart with the given name, quantity, and price
     public void addToCart(String name, int quantity, double price) {
         for (int i = 0; i < quantity; i++) {
             Item item = new Item(name, quantity, price);
@@ -22,6 +25,8 @@ public class ShoppingCart {
         this.price += (price * quantity);
     }
 
+    // MODIFIES: this
+    // EFFECTS: remove item from cart with the given name and quantity
     public void removeFromCart(String name, int quantity) {
         for (int i = 0; i < getNumItem(); i++) {
             Item item = shoppingCartItems.get(i);
@@ -41,20 +46,25 @@ public class ShoppingCart {
         }
     }
 
-
+    // EFFECTS: return the name
     public String getName() {
         return name;
     }
 
+    // EFFECTS: return the total items (quantity) of the whole shopping cart
     public int getNumItem() {
         return shoppingCartItems.size();
     }
 
+    // EFFECTS: return the total of the whole shopping cart
     public double getPriceAltogether() {
         return price;
     }
 
-    public String invoiceReceipt() {
+    // MODIFIES: this
+    // EFFECTS: prints the invoice for the user along with the name of the items, alongside with the price,
+    // and total of the whole shopping cart made by the user
+    public String printInvoice() {
         String content;
 
         content = "INVOICE\n" + "_____________";

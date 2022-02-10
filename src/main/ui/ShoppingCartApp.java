@@ -2,20 +2,23 @@ package ui;
 
 import model.ShoppingCart;
 
-import java.util.Locale;
 import java.util.Scanner;
 
+// Shopping Cart App
 public class ShoppingCartApp {
 
     private ShoppingCart cart;
     private Scanner sc;
 
+    // EFFECTS: runs the Shopping Cart application
     public ShoppingCartApp() {
         cart = new ShoppingCart();
         runApp();
     }
 
     // Reference: TellerApp
+    // MODIFIES: this
+    // EFFECTSL processes user input
     public void runApp() {
         boolean keepGoing = true;
         String command = null;
@@ -38,6 +41,9 @@ public class ShoppingCartApp {
         System.out.println("\nSee you again, thank you for shopping with us!");
     }
 
+    // Reference: TellerApp
+    // MODIFIES: this
+    // EFFECTS: processes user command
     private void processCommand(String command) {
 
         if (command.equals("1")) {
@@ -53,7 +59,7 @@ public class ShoppingCartApp {
         }
     }
 
-
+    // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\t1 -> Add item to basket");
@@ -64,6 +70,9 @@ public class ShoppingCartApp {
         System.out.println("\t6 -> Quit app");
     }
 
+    // MODIFIES: this
+    // EFFECTS: asks for user input for the item's name, quantity, and price
+    // added the item into the shopping cart
     private void doAdd() {
         String name;
         double price;
@@ -84,7 +93,9 @@ public class ShoppingCartApp {
 
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: asks for user input which item to remove,
+    // remove the item picked by the user from the shopping cart
     private void doRemove() {
         String answer;
         String name;
@@ -109,16 +120,23 @@ public class ShoppingCartApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: prints the total quantity in the user's shopping cart
     private void doTotalQuantity() {
         System.out.println("\n" + "Total quantity of items in your shopping cart: " + cart.getNumItem());
     }
 
+    // MODIFIES: this
+    // EFFECTS: prints the total cost/ price of the user's shopping cart
     private void doTotalCost() {
         System.out.println("\n" + "Total cost for this purchase is: $" + cart.getPriceAltogether());
     }
 
+    // MODIFIES: this
+    // EFFECTS: prints the invoice for the user along with the name, the price of the items,
+    // and the total cart
     private void doFinishShopping() {
-        System.out.println("\n" + cart.invoiceReceipt() + "\nTotal: $" + cart.getPriceAltogether());
+        System.out.println("\n" + cart.printInvoice() + "\nTotal: $" + cart.getPriceAltogether());
     }
 
 }
