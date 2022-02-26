@@ -110,7 +110,7 @@ public class ShoppingCartApp {
             System.out.println("How many " + name + " do you want to remove?");
             quantity = sc.nextInt();
             cart.removeFromCart(name, quantity);
-            System.out.println(name + " successfully removed from cart.");
+            System.out.println(quantity + " " + name + "(s) successfully removed from cart.");
         } else if (answer.equals("n")) {
             System.out.println("Please pick another option to proceed.");
             displayMenu();

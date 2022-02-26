@@ -63,8 +63,10 @@ class ShoppingCartTest {
         assertEquals(7, testShoppingCart.getNumItem());
         testShoppingCart.removeFromCart("Apple", 2);
         assertEquals(5, testShoppingCart.getNumItem());
-        testShoppingCart.removeFromCart("Apple", 3);
-        assertEquals(2, testShoppingCart.getNumItem());
+        testShoppingCart.removeFromCart("Apple", 2);
+        assertEquals(3, testShoppingCart.getNumItem());
+        testShoppingCart.removeFromCart("Apple", 2);
+        assertEquals(1, testShoppingCart.getNumItem());
     }
 
     @Test

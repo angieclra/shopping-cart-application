@@ -8,32 +8,46 @@ public class ShoppingCart {
     private ArrayList<Item> shoppingCartItems; // array list consisting of the items (objects)
     private double price; // add fields to represent changing properties of a shopping cart
     private String name;
+    private int quantity;
+    private Item item;
 
     // EFFECTS: constructs shopping cart
     public ShoppingCart() {
-        shoppingCartItems = new ArrayList<Item>();
+        item = new Item(name, quantity, price);
+        shoppingCartItems = new ArrayList<>();
     }
 
     // MODIFIES: this
     // EFFECTS: add item to cart with the given name, quantity, and price
     public void addToCart(String name, int quantity, double price) {
         for (int i = 0; i < quantity; i++) {
-            Item item = new Item(name, quantity, price);
+            item = new Item(name, quantity, price);
             shoppingCartItems.add(item);
         }
         this.name = name;
         this.price += (price * quantity);
     }
 
-    // MODIFIES: this
-    // EFFECTS: remove item from cart with the given name and quantity
+//    // MODIFIES: this
+//    // EFFECTS: remove item from cart with the given name and quantity
+//    public void removeFromCart(String name, int quantity) {
+//        for (Item item: shoppingCartItems) {
+//           // Item item = shoppingCartItems.get(i);
+//            if (item.getItemName().equals(name)) {
+//                shoppingCartItems.remove(item);
+//            }
+//            this.name = name;
+//            this.price += (price * quantity);
+//        }
+//    }
     public void removeFromCart(String name, int quantity) {
+        quantity = shoppingCartItems.size();
         for (int i = 0; i < getNumItem(); i++) {
             Item item = shoppingCartItems.get(i);
             if (item.getItemName().equals(name)) {
                 if (quantity != 0) {
                     shoppingCartItems.remove(i);
-                    quantity = quantity - 1;
+                    quantity = quantity - i;
                     price = getPriceAltogether() - item.getItemPrice();
 //                } else {
 //                    System.out.println("No item named " + name + " found in the cart. "
