@@ -25,7 +25,7 @@ public class ShoppingCartApp {
         runApp();
     }
 
-    // Reference: TellerApp
+    // Reference: https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
     // MODIFIES: this
     // EFFECTSL processes user input
     public void runApp() {
@@ -47,7 +47,7 @@ public class ShoppingCartApp {
         System.out.println("\nSee you again, thank you for shopping with us!");
     }
 
-    // Reference: TellerApp
+    // Reference: https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
     // MODIFIES: this
     // EFFECTS: processes user command
     private void processCommand(String command) {

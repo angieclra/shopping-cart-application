@@ -7,7 +7,6 @@ import persistence.Writable;
 public class Item implements Writable {
 
     private String itemName; // name of the item purchased
-    private int itemQuantity; // amount of quantity that will be bought by the user
     private double itemPrice; // price of the item purchased
 
     // EFFECTS: name of item is set to itemName
@@ -28,10 +27,6 @@ public class Item implements Writable {
 
     public String getItemName() {
         return itemName;
-    }
-
-    public int getItemQuantity() {
-        return itemQuantity;
     }
 
     public double getItemPrice() {
