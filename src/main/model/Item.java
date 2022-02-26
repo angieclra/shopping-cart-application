@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a single item having a name, quantity, and price
-public class Item {
+public class Item implements Writable {
 
     private String itemName; // name of the item purchased
     private int itemQuantity; // amount of quantity that will be bought by the user
@@ -38,6 +41,16 @@ public class Item {
 
     public double getItemPrice() {
         return itemPrice;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", itemName);
+        json.put("quantity", itemQuantity);
+        json.put("price", itemPrice);
+        return json;
+
     }
 
 }

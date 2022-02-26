@@ -1,18 +1,26 @@
 package ui;
 
 import model.ShoppingCart;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Shopping Cart App
 public class ShoppingCartApp {
-
+    private static final String JSON_STORE = "./data/shoppingCart.json";
     private ShoppingCart cart;
     private Scanner sc;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the Shopping Cart application
     public ShoppingCartApp() {
-        cart = new ShoppingCart();
+        cart = new ShoppingCart("Angie's Shopping Cart");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runApp();
     }
 
@@ -29,7 +37,7 @@ public class ShoppingCartApp {
             displayMenu();
             command = sc.next();
 
-            if (command.equals("6")) {
+            if (command.equals("8")) {
                 keepGoing = false;
             } else if (command.equals("5")) {
                 doFinishShopping();
@@ -54,6 +62,10 @@ public class ShoppingCartApp {
             doTotalQuantity();
         } else if (command.equals("4")) {
             doTotalCost();
+        } else if (command.equals("6")) {
+            doSaveCart();
+        } else if (command.equals("7")) {
+            doLoadCart();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -67,7 +79,9 @@ public class ShoppingCartApp {
         System.out.println("\t3 -> Sum of total quantity");
         System.out.println("\t4 -> Total cost of your shopping cart");
         System.out.println("\t5 -> Finish shopping and get invoice");
-        System.out.println("\t6 -> Quit app");
+        System.out.println("\t6 -> Save current shopping cart to file");
+        System.out.println("\t7 -> Load current shopping cart from file");
+        System.out.println("\t8 -> Quit app");
     }
 
     // MODIFIES: this
@@ -109,7 +123,7 @@ public class ShoppingCartApp {
             name = sc.next();
             System.out.println("How many " + name + " do you want to remove?");
             quantity = sc.nextInt();
-            cart.removeFromCart(name, quantity);
+            cart.removeFromCart(name);
             System.out.println(quantity + " " + name + "(s) successfully removed from cart.");
         } else if (answer.equals("n")) {
             System.out.println("Please pick another option to proceed.");
@@ -138,5 +152,29 @@ public class ShoppingCartApp {
     private void doFinishShopping() {
         System.out.println("\n" + cart.printInvoice() + "\nTotal: $" + cart.getPriceAltogether());
     }
+
+    // EFFECTS: saves the shopping cart to file
+    private void doSaveCart() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(cart);
+            jsonWriter.close();
+            System.out.println("Saved " + cart.getName() + "to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads shopping cart from file
+    private void doLoadCart() {
+        try {
+            cart = jsonReader.read();
+            System.out.println("Loaded " + cart.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read to file: " + JSON_STORE);
+        }
+    }
+
 
 }

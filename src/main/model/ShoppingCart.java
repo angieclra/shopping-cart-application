@@ -1,10 +1,16 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a shopping cart with the items purchased in it
-public class ShoppingCart {
+public class ShoppingCart implements Writable {
     private ArrayList<Item> shoppingCartItems; // array list consisting of the items (objects)
     private double price; // add fields to represent changing properties of a shopping cart
     private String name;
@@ -12,8 +18,8 @@ public class ShoppingCart {
     private Item item;
 
     // EFFECTS: constructs shopping cart
-    public ShoppingCart() {
-        item = new Item(name, quantity, price);
+    public ShoppingCart(String name) {
+        this.name = name;
         shoppingCartItems = new ArrayList<>();
     }
 
@@ -28,20 +34,10 @@ public class ShoppingCart {
         this.price += (price * quantity);
     }
 
-//    // MODIFIES: this
-//    // EFFECTS: remove item from cart with the given name and quantity
-//    public void removeFromCart(String name, int quantity) {
-//        for (Item item: shoppingCartItems) {
-//           // Item item = shoppingCartItems.get(i);
-//            if (item.getItemName().equals(name)) {
-//                shoppingCartItems.remove(item);
-//            }
-//            this.name = name;
-//            this.price += (price * quantity);
-//        }
-//    }
-    public void removeFromCart(String name, int quantity) {
-        quantity = shoppingCartItems.size();
+    // MODIFIES: this
+    // EFFECTS: remove item from cart with the given name and quantity
+    public void removeFromCart(String name) {
+        int quantity = shoppingCartItems.size();
         for (int i = 0; i < getNumItem(); i++) {
             Item item = shoppingCartItems.get(i);
             if (item.getItemName().equals(name)) {
@@ -49,15 +45,15 @@ public class ShoppingCart {
                     shoppingCartItems.remove(i);
                     quantity = quantity - i;
                     price = getPriceAltogether() - item.getItemPrice();
-//                } else {
-//                    System.out.println("No item named " + name + " found in the cart. "
-//                            + "Nothing is removed from the cart.");
-//                }
                 } else {
                     break;
                 }
             }
         }
+    }
+
+    public List<Item> getItems() {
+        return Collections.unmodifiableList(shoppingCartItems);
     }
 
     // EFFECTS: return the name
@@ -89,5 +85,23 @@ public class ShoppingCart {
         return content;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("items", itemsToJson());
+        return json;
+    }
+
+    // EFFECTS: return things in this shopping cart as a JSON array
+    private JSONArray itemsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Item i: shoppingCartItems) {
+            jsonArray.put(i.toJson());
+        }
+
+        return jsonArray;
+    }
 }
 
