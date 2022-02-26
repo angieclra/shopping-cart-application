@@ -22,5 +22,5 @@ cart project interest me since it's crucial and practical for our daily lives.
 - As a user, I want to be able to see the total items in the shopping cart
 - As a user, I want to be able to see the total price in the shopping cart
 - As a user, I want to be able to see the invoice for my shopping
-- As a user, I want to be able to save my current state of the shopping cart
-- As a user, I want to be able to load my whole shopping cart 
+- As a user, I want to be able to save my current state of the shopping cart to file
+- As a user, I want to be able to load my whole shopping cart from file
