@@ -78,6 +78,9 @@ public class ShoppingCart implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("cartName", cartName);
+        json.put("cartPrice", price);
+        json.put("invoice", printInvoice());
+        json.put("cartNumberOfItems", getNumItem());
         json.put("items", itemsToJson());
         return json;
     }

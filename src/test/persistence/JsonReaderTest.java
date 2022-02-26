@@ -29,6 +29,7 @@ public class JsonReaderTest extends JsonTest {
             ShoppingCart sc = reader.read();
             assertEquals("Angie's Shopping Cart", sc.getCartName());
             assertEquals(0, sc.getNumItem());
+            assertEquals(0, sc.getPriceAltogether());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -42,6 +43,7 @@ public class JsonReaderTest extends JsonTest {
             assertEquals("Angie's Shopping Cart", sc.getCartName());
             List<Item> items = sc.getItems();
             assertEquals(2, items.size());
+            assertEquals(6.05, sc.getPriceAltogether());
             checkItem("apple", 3.0, items.get(0));
             checkItem("banana", 3.05, items.get(1));
         } catch (IOException e) {

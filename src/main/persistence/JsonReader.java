@@ -63,6 +63,9 @@ public class JsonReader {
         Double price = jsonObject.getDouble("price");
         Item item = new Item(name, price);
         sc.addToCart(item);
+        sc.getNumItem();
+        sc.getPriceAltogether();
+        sc.printInvoice();
     }
 
 }

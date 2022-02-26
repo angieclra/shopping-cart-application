@@ -7,6 +7,7 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Scanner;
 
 // Shopping Cart App
@@ -99,7 +100,7 @@ public class ShoppingCartApp {
         price = sc.nextDouble();
 
         cart.addToCart(new Item(name, price));
-        System.out.println(name + "(s) " + "successfully added to cart.");
+        System.out.println(name.toUpperCase() + " successfully added to cart.");
 
     }
 
@@ -118,7 +119,7 @@ public class ShoppingCartApp {
             System.out.println("Name of item you would like to remove:");
             name = sc.next();
             cart.removeFromCart(name);
-            System.out.println(name + "(s) successfully removed from cart.");
+            System.out.println(name.toUpperCase() + " successfully removed from cart.");
         } else if (answer.equals("n")) {
             System.out.println("Please pick another option to proceed.");
             displayMenu();
