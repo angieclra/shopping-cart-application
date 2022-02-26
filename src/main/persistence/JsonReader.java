@@ -58,14 +58,13 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: sc
+    // EFFECTS: parses item from JSON object and adds it to shopping cart
     private void addItem(ShoppingCart sc, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Double price = jsonObject.getDouble("price");
         Item item = new Item(name, price);
         sc.addToCart(item);
-        sc.getNumItem();
-        sc.getPriceAltogether();
-        sc.printInvoice();
     }
 
 }

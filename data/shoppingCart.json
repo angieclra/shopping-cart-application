@@ -1,7 +1,7 @@
 {
-    "cartPrice": 16,
+    "cartPrice": 9,
     "cartName": "Angie's Shopping Cart",
-    "invoice": "INVOICE\n_____________\nName: APPLE\nPrice: $5.0\n--------------\nName: BANANA\nPrice: $4.0\n--------------\nName: FOO\nPrice: $7.0\n--------------",
+    "invoice": "INVOICE\n_____________\nName: APPLE\nPrice: $5.0\n--------------\nName: BANANA\nPrice: $4.0\n--------------",
     "items": [
         {
             "price": 5,
@@ -10,11 +10,7 @@
         {
             "price": 4,
             "name": "banana"
-        },
-        {
-            "price": 7,
-            "name": "foo"
         }
     ],
-    "cartNumberOfItems": 3
+    "cartNumberOfItems": 2
 }
