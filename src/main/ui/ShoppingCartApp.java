@@ -1,6 +1,7 @@
 package ui;
 
 import model.ShoppingCart;
+import model.Item;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -39,9 +40,6 @@ public class ShoppingCartApp {
 
             if (command.equals("8")) {
                 keepGoing = false;
-            } else if (command.equals("5")) {
-                doFinishShopping();
-                keepGoing = false;
             } else {
                 processCommand(command);
             }
@@ -62,6 +60,8 @@ public class ShoppingCartApp {
             doTotalQuantity();
         } else if (command.equals("4")) {
             doTotalCost();
+        } else if (command.equals("5")) {
+            doFinishShopping();
         } else if (command.equals("6")) {
             doSaveCart();
         } else if (command.equals("7")) {
@@ -90,7 +90,6 @@ public class ShoppingCartApp {
     private void doAdd() {
         String name;
         double price;
-        int quantity;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("What is the name of your item?");
@@ -99,11 +98,8 @@ public class ShoppingCartApp {
         System.out.println("How much is the price?");
         price = sc.nextDouble();
 
-        System.out.println("What is the quantity?");
-        quantity = sc.nextInt();
-
-        cart.addToCart(name, quantity, price);
-        System.out.println(quantity + " " + name + "(s) " + "successfully added to cart.");
+        cart.addToCart(new Item(name, price));
+        System.out.println(name + "(s) " + "successfully added to cart.");
 
     }
 
@@ -121,10 +117,8 @@ public class ShoppingCartApp {
         if (answer.equals("y")) {
             System.out.println("Name of item you would like to remove:");
             name = sc.next();
-            System.out.println("How many " + name + " do you want to remove?");
-            quantity = sc.nextInt();
             cart.removeFromCart(name);
-            System.out.println(quantity + " " + name + "(s) successfully removed from cart.");
+            System.out.println(name + "(s) successfully removed from cart.");
         } else if (answer.equals("n")) {
             System.out.println("Please pick another option to proceed.");
             displayMenu();
@@ -159,7 +153,7 @@ public class ShoppingCartApp {
             jsonWriter.open();
             jsonWriter.write(cart);
             jsonWriter.close();
-            System.out.println("Saved " + cart.getName() + "to " + JSON_STORE);
+            System.out.println("Saved " + cart.getCartName() + "to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -170,7 +164,7 @@ public class ShoppingCartApp {
     private void doLoadCart() {
         try {
             cart = jsonReader.read();
-            System.out.println("Loaded " + cart.getName() + " from " + JSON_STORE);
+            System.out.println("Loaded " + cart.getCartName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read to file: " + JSON_STORE);
         }

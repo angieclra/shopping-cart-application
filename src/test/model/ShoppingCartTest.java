@@ -8,105 +8,102 @@ import static org.junit.jupiter.api.Assertions.*;
 class ShoppingCartTest {
 
     private ShoppingCart testShoppingCart;
+    private Item apple;
+    private Item banana;
 
     @BeforeEach
     public void setup() {
         testShoppingCart = new ShoppingCart("Angie's Shopping Cart");
+        apple = new Item("Apple", 2.00);
+        banana = new Item("Banana", 4.00);
+    }
+
+    @Test
+    public void testConstructor() {
+        assertEquals("Angie's Shopping Cart", testShoppingCart.getCartName());
+        assertEquals("Apple", apple.getItemName());
+        assertEquals(2.00, apple.getItemPrice());
+        assertEquals("Banana", banana.getItemName());
+        assertEquals(4.00, banana.getItemPrice());
     }
 
     @Test
     public void testAddToCart() {
-        testShoppingCart.addToCart("Apple", 2, 3.99);
-        assertEquals("Apple", testShoppingCart.getName());
-        assertEquals(7.98, testShoppingCart.getPriceAltogether());
-        assertEquals(2, testShoppingCart.getNumItem());
+        testShoppingCart.addToCart(apple);
+        assertEquals(2.00, testShoppingCart.getPriceAltogether());
+        assertEquals(1, testShoppingCart.getNumItem());
     }
 
     @Test
     public void testAddMultipleItemsToCart() {
-        testShoppingCart.addToCart("Apple", 2, 3.99);
-        testShoppingCart.addToCart("Orange", 3, 2.00);
-        assertEquals("Orange", testShoppingCart.getName());
-        assertEquals(5, testShoppingCart.getNumItem());
-        assertEquals(13.98, testShoppingCart.getPriceAltogether());
+        testShoppingCart.addToCart(apple);
+        testShoppingCart.addToCart(banana);
+        assertEquals(2, testShoppingCart.getNumItem());
+        assertEquals(6.0, testShoppingCart.getPriceAltogether());
     }
 
     @Test
     public void testRemoveFromCart() {
-        testShoppingCart.addToCart("Apple", 3, 1);
+        testShoppingCart.addToCart(apple);
         testShoppingCart.removeFromCart("Apple");
-        assertEquals(1, testShoppingCart.getNumItem());
-        assertEquals(1, testShoppingCart.getPriceAltogether());
+        assertEquals(0, testShoppingCart.getPriceAltogether());
     }
 
     @Test
     public void testRemoveFromCartWhenQuantityZero() {
-        testShoppingCart.addToCart("Apple", 1, 1.00);
+        testShoppingCart.addToCart(apple);
         testShoppingCart.removeFromCart("Apple");
-        assertEquals(1, testShoppingCart.getNumItem());
-        assertEquals(1.00, testShoppingCart.getPriceAltogether());
+        assertEquals(0, testShoppingCart.getNumItem());
+        assertEquals(0, testShoppingCart.getPriceAltogether());
     }
 
     @Test
     public void testRemoveFromCartWhenItemIsNotThere() {
-        testShoppingCart.addToCart("Apple", 1, 2);
-        testShoppingCart.addToCart("Chocolate", 1, 1);
+        testShoppingCart.addToCart(apple);
+        testShoppingCart.addToCart(banana);
         testShoppingCart.removeFromCart("Orange");
         assertEquals(2, testShoppingCart.getNumItem());
-        assertEquals(3, testShoppingCart.getPriceAltogether());
+        assertEquals(6.0, testShoppingCart.getPriceAltogether());
     }
 
     @Test
     public void testRemoveFromCartMore() {
-        testShoppingCart.addToCart("Apple", 2, 1.99);
-        testShoppingCart.addToCart("Apple", 5, 2.00);
-        assertEquals(7, testShoppingCart.getNumItem());
-        testShoppingCart.removeFromCart("Apple");
-        assertEquals(5, testShoppingCart.getNumItem());
-        testShoppingCart.removeFromCart("Apple");
-        assertEquals(3, testShoppingCart.getNumItem());
+        testShoppingCart.addToCart(apple);
+        testShoppingCart.addToCart(banana);
+        assertEquals(2, testShoppingCart.getNumItem());
         testShoppingCart.removeFromCart("Apple");
         assertEquals(1, testShoppingCart.getNumItem());
+        testShoppingCart.removeFromCart("Banana");
+        assertEquals(0, testShoppingCart.getNumItem());
+
     }
 
     @Test
     public void testGetNumItem() {
-        testShoppingCart.addToCart("Apple", 3, 2.00);
-        testShoppingCart.addToCart("Orange", 4, 5.00);
-        assertEquals(7, testShoppingCart.getNumItem());
+        testShoppingCart.addToCart(apple);
+        testShoppingCart.addToCart(banana);
+        assertEquals(2, testShoppingCart.getNumItem());
     }
 
     @Test
     public void testGetPriceAltogether() {
-        testShoppingCart.addToCart("Apple", 3, 2.00);
-        testShoppingCart.addToCart("Orange", 4, 5.00);
-        assertEquals(26.00, testShoppingCart.getPriceAltogether());
+        testShoppingCart.addToCart(apple);
+        testShoppingCart.addToCart(banana);
+        assertEquals(6.0, testShoppingCart.getPriceAltogether());
     }
 
     @Test
     public void testGetPriceAltogetherWithRemove() {
-        testShoppingCart.addToCart("Banana", 5, 4.00);
-        testShoppingCart.addToCart("Banana", 6, 5.00);
+        testShoppingCart.addToCart(banana);
+        testShoppingCart.addToCart(apple);
         testShoppingCart.removeFromCart("Banana");
-        assertEquals(42.00, testShoppingCart.getPriceAltogether());
-    }
-
-    @Test
-    public void testGetPriceAltogetherWithRemove2() {
-        testShoppingCart.addToCart("Apple", 2, 1.99);
-        testShoppingCart.addToCart("Apple", 5, 2.00);
-        assertEquals(7, testShoppingCart.getNumItem());
-        testShoppingCart.removeFromCart("Apple");
-        assertEquals(5, testShoppingCart.getNumItem());
-        testShoppingCart.removeFromCart("Apple");
-        assertEquals(2, testShoppingCart.getNumItem());
-        assertEquals(4.00, testShoppingCart.getPriceAltogether());
+        assertEquals(2.0, testShoppingCart.getPriceAltogether());
     }
 
     @Test
     public void testPrintInvoice() {
-        testShoppingCart.addToCart("Apple", 1, 3.99);
-        assertEquals("INVOICE\n_____________\nName: APPLE\nPrice: $3.99\n--------------",
+        testShoppingCart.addToCart(apple);
+        assertEquals("INVOICE\n_____________\nName: APPLE\nPrice: $2.0\n--------------",
                 testShoppingCart.printInvoice());
     }
 

@@ -41,13 +41,13 @@ public class JsonReader {
 
     // EFFECTS: parses shopping cart from JSON object and returns it
     private ShoppingCart parseShoppingCart(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
+        String name = jsonObject.getString("cartName");
         ShoppingCart sc = new ShoppingCart(name);
         addItems(sc, jsonObject);
         return sc;
     }
 
-    // MODIFIES: shoppingCart
+    // MODIFIES: sc
     // EFFECTS: parses items from JSON object and adds them to shopping cart
     private void addItems(ShoppingCart sc, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("items");
@@ -59,9 +59,9 @@ public class JsonReader {
 
     private void addItem(ShoppingCart sc, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        Integer quantity = jsonObject.getInt("quantity");
         Double price = jsonObject.getDouble("price");
-        sc.addToCart(name, quantity, price);
+        Item item = new Item(name, price);
+        sc.addToCart(item);
     }
 
 }

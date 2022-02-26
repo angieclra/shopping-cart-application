@@ -13,18 +13,13 @@ public class Item implements Writable {
     // EFFECTS: name of item is set to itemName
     // quantity of item(s) is set to itemQuantity
     // price of item(s) is set to itemPrice
-    public Item(String itemName, int itemQuantity, double itemPrice) {
+    public Item(String itemName, double itemPrice) {
         this.itemName = itemName;
-        this.itemQuantity = itemQuantity;
         this.itemPrice = itemPrice;
     }
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
-    }
-
-    public void setItemQuantity(int quantity) {
-        this.itemQuantity = quantity;
     }
 
     public void setPrice(double price) {
@@ -47,7 +42,6 @@ public class Item implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", itemName);
-        json.put("quantity", itemQuantity);
         json.put("price", itemPrice);
         return json;
 

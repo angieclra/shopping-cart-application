@@ -34,7 +34,7 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyShoppingCart.json");
             sc = reader.read();
-            assertEquals("SC 1", sc.getName());
+            assertEquals("Angie's Shopping Cart", sc.getCartName());
             assertEquals(0, sc.getNumItem());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -45,8 +45,8 @@ public class JsonWriterTest extends JsonTest {
     void testWriterGeneralShoppingCart() {
         try {
             ShoppingCart sc = new ShoppingCart("Angie's Shopping Cart");
-            sc.addToCart("apple", 3, 2.99);
-            sc.addToCart("banana", 5, 3.05);
+            sc.addToCart(new Item("apple", 3.00));
+            sc.addToCart(new Item("banana", 3.05));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralShoppingCart.json");
             writer.open();
             writer.write(sc);
@@ -54,11 +54,11 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralShoppingCart.json");
             sc = reader.read();
-            assertEquals("Angie's Shopping Cart", sc.getName());
+            assertEquals("Angie's Shopping Cart", sc.getCartName());
             List<Item> items = sc.getItems();
             assertEquals(2, items.size());
-            checkItem("apple", 3, 2.99, items.get(0));
-            checkItem("banana", 5, 3.05, items.get(1));
+            checkItem("apple", 3.00, items.get(0));
+            checkItem("banana", 3.05, items.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

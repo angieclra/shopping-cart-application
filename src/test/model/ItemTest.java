@@ -11,13 +11,12 @@ public class ItemTest {
 
     @BeforeEach
     public void setup() {
-        testItem = new Item("apple", 2, 1.99);
+        testItem = new Item("apple", 1.99);
     }
 
     @Test
     public void testConstructor() {
         assertEquals("apple", testItem.getItemName());
-        assertEquals(2, testItem.getItemQuantity());
         assertEquals(1.99, testItem.getItemPrice());
     }
 
@@ -25,12 +24,6 @@ public class ItemTest {
     public void testSetItemName() {
         testItem.setItemName("apple");
         assertEquals("apple", testItem.getItemName());
-    }
-
-    @Test
-    public void testSetItemQuantity() {
-        testItem.setItemQuantity(3);
-        assertEquals(3, testItem.getItemQuantity());
     }
 
     @Test

@@ -1,0 +1,13 @@
+{
+  "cartName": "Angie's Shopping Cart",
+  "items": [
+    {
+      "price": 3,
+      "name": "apple"
+    },
+    {
+      "price": 3.05,
+      "name": "banana"
+    }
+  ]
+}

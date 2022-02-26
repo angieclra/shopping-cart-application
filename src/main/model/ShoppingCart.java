@@ -13,55 +13,40 @@ import persistence.Writable;
 public class ShoppingCart implements Writable {
     private ArrayList<Item> shoppingCartItems; // array list consisting of the items (objects)
     private double price; // add fields to represent changing properties of a shopping cart
-    private String name;
-    private int quantity;
-    private Item item;
+    private String cartName;
 
     // EFFECTS: constructs shopping cart
-    public ShoppingCart(String name) {
-        this.name = name;
+    public ShoppingCart(String cartName) {
+        this.cartName = cartName;
         shoppingCartItems = new ArrayList<>();
     }
 
     // MODIFIES: this
-    // EFFECTS: add item to cart with the given name, quantity, and price
-    public void addToCart(String name, int quantity, double price) {
-        for (int i = 0; i < quantity; i++) {
-            item = new Item(name, quantity, price);
-            shoppingCartItems.add(item);
-        }
-        this.name = name;
-        this.price += (price * quantity);
+    // EFFECTS: add item to the shopping cart
+    public void addToCart(Item item) {
+        shoppingCartItems.add(item);
+        price += item.getItemPrice();
     }
 
     // MODIFIES: this
-    // EFFECTS: remove item from cart with the given name and quantity
+    // EFFECTS: remove item from cart with the given name
     public void removeFromCart(String name) {
-        int quantity = shoppingCartItems.size();
-        for (int i = 0; i < getNumItem(); i++) {
+        for (int i = 0; i < shoppingCartItems.size(); i++) {
             Item item = shoppingCartItems.get(i);
             if (item.getItemName().equals(name)) {
-                if (quantity != 0) {
-                    shoppingCartItems.remove(i);
-                    quantity = quantity - i;
-                    price = getPriceAltogether() - item.getItemPrice();
-                } else {
-                    break;
-                }
+                shoppingCartItems.remove(item);
+                price = getPriceAltogether() - item.getItemPrice();
             }
         }
     }
+
 
     public List<Item> getItems() {
         return Collections.unmodifiableList(shoppingCartItems);
     }
 
-    // EFFECTS: return the name
-    public String getName() {
-        return name;
-    }
 
-    // EFFECTS: return the total items (quantity) of the whole shopping cart
+    // EFFECTS: return the total items of the whole shopping cart
     public int getNumItem() {
         return shoppingCartItems.size();
     }
@@ -69,6 +54,10 @@ public class ShoppingCart implements Writable {
     // EFFECTS: return the total of the whole shopping cart
     public double getPriceAltogether() {
         return price;
+    }
+
+    public String getCartName() {
+        return cartName;
     }
 
     // MODIFIES: this
@@ -88,7 +77,7 @@ public class ShoppingCart implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("name", name);
+        json.put("cartName", cartName);
         json.put("items", itemsToJson());
         return json;
     }
