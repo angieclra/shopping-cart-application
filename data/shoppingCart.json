@@ -1,16 +1,16 @@
 {
-    "cartPrice": 18.03,
-    "cartName": "Angie's Shopping Cart",
-    "invoice": "INVOICE\n_____________\nName: APPLE\nPrice: $3.45\n--------------\nName: BANANA\nPrice: $2.99\n--------------\nName: GRAPE\nPrice: $5.25\n--------------\nName: STRAWBERRY\nPrice: $3.85\n--------------\nName: ORANGE\nPrice: $2.49\n--------------",
+    "cartPrice": 17,
+    "cartName": "Angelique's Shopping Cart",
+    "invoice": "INVOICE\n__________________________________\nName: APPLE\nPrice: $3.25\n--------------\nName: BANANA\nPrice: $2.37\n--------------\nName: GRAPE\nPrice: $5.25\n--------------\nName: STRAWBERRY\nPrice: $3.68\n--------------\nName: ORANGE\nPrice: $2.45\n--------------",
     "items": [
         {
             "image": "./images/apple.png",
-            "price": 3.45,
+            "price": 3.25,
             "name": "Apple"
         },
         {
             "image": "./images/banana.jpg",
-            "price": 2.99,
+            "price": 2.37,
             "name": "Banana"
         },
         {
@@ -20,12 +20,12 @@
         },
         {
             "image": "./images/strawberry.png",
-            "price": 3.85,
+            "price": 3.68,
             "name": "Strawberry"
         },
         {
             "image": "./images/orange.jpg",
-            "price": 2.49,
+            "price": 2.45,
             "name": "Orange"
         }
     ],

@@ -103,7 +103,7 @@ public class ShoppingCartApp {
         System.out.println("Location of image");
         image = sc.next();
 
-        cart.addToCart(new Item(name, price, image));
+        cart.addToCart(new Item(name, (float) price, image));
         System.out.println(name.toUpperCase() + " successfully added to cart.");
 
     }

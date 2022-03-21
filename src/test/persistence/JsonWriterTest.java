@@ -47,7 +47,7 @@ public class JsonWriterTest extends JsonTest {
         try {
             ShoppingCart sc = new ShoppingCart("Angie's Shopping Cart");
             sc.addToCart(new Item("apple", 3.00, "./images/apple.png"));
-            sc.addToCart(new Item("banana", 3.05, "./images/banana.jpg"));
+            sc.addToCart(new Item("banana",  3.05, "./images/banana.jpg"));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralShoppingCart.json");
             writer.open();
             writer.write(sc);

@@ -8,6 +8,8 @@ import persistence.JsonReader;
 import java.io.FileNotFoundException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -20,36 +22,43 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     static JFrame frame;
     private ShoppingCart items;
     private JTextField total;
+    private JTextField totalItems;
+
     private JPanel panel;
+    private JPanel centerPanel;
+    private JPanel bottomPanel;
+    private JPanel rightPanel;
+
     private JLabel label;
     private JLabel label1;
-    private JPanel panel1;
-    private JPanel panel2;
-    private JPanel panel3;
-    private JTextField totalItems;
+
+    private JTextArea invoicePane;
+
     private JButton addItemButton;
     private JButton removeItemButton;
-    private JButton viewShoppingCartButton;
+    private JButton viewInvoiceButton;
     private JButton finishShoppingButton;
     private JButton loadButton;
     private JButton saveButton;
+
     private BufferedImage fruitImage;
     private BufferedImage fruitImageResized;
-    private JList itemList;
+
+    private JScrollPane scrollPane;
 
     // MODIFIES: this
     // EFFECTS: sets the frame of the application
     public ShoppingCartFrame(ShoppingCart products) throws IOException {
         setTitle(products.getCartName());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        items = new ShoppingCart("Angie's Shopping Cart");
+        items = new ShoppingCart("Angelique's Shopping Cart");
 
         total = new JTextField("$0.00",5);
         total.setEditable(false);
         total.setEnabled(false);
         total.setDisabledTextColor(Color.BLACK);
 
-        totalItems = new JTextField("0", 3);
+        totalItems = new JTextField("0", 2);
         totalItems.setEditable(false);
         totalItems.setEnabled(false);
         totalItems.setDisabledTextColor(Color.BLACK);
@@ -66,13 +75,14 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     private void firstPanel(ShoppingCart products) throws IOException {
         panel = new JPanel();
         panel.setBackground(new Color(92,157,153));
+        panel.setBorder(new TitledBorder("Summary"));
 
         label = new JLabel("Total Price:");
-        label.setFont(new Font("Helvetica", Font.ITALIC, 25));
+        label.setFont(new Font("Helvetica", Font.ITALIC, 22));
         label.setForeground(Color.WHITE);
 
         label1 = new JLabel("Total Quantity:");
-        label1.setFont(new Font("Helvetica", Font.ITALIC, 25));
+        label1.setFont(new Font("Helvetica", Font.ITALIC, 22));
         label1.setForeground(Color.WHITE);
 
         panel.add(label);
@@ -87,26 +97,26 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         }
 
         add(panel, BorderLayout.CENTER);
+        setLocationRelativeTo(null);
         pack();
     }
 
     // MODIFIES: this
     // EFFECTS: displays each of the item name, price, and image that are available on the shopping cart app
     public void addItem(final Item product, JPanel panel) throws IOException {
-        panel1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panel1.setBackground(new Color(183, 218, 212));
+        initializeCenterPanel();
 
         label = new JLabel("" + product.getItemName());
         label.setFont(new Font("Helvetica", Font.BOLD, 20));
         label.setForeground(Color.WHITE);
-        panel1.add(label);
-        panel.add(panel1);
+        centerPanel.add(label);
+        panel.add(centerPanel);
 
         label = new JLabel("- Price: $" + product.getItemPrice());
         label.setFont(new Font("Helvetica", Font.PLAIN, 15));
         label.setForeground(Color.WHITE);
-        panel1.add(label);
-        panel.add(panel1);
+        centerPanel.add(label);
+        panel.add(centerPanel);
 
         fruitImage = ImageIO.read(new File(product.getItemImage()));
         fruitImageResized = new BufferedImage(50, 50, fruitImage.getType());
@@ -115,10 +125,20 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         g2d.dispose();
 
         JLabel label = new JLabel(new ImageIcon(fruitImageResized));
-        panel1.add(label, FlowLayout.LEFT);
-        panel.add(panel1);
+        centerPanel.add(label, FlowLayout.LEFT);
+        panel.add(centerPanel);
 
         buttons(product);
+    }
+
+    private void initializeCenterPanel() {
+        centerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        centerPanel.setBorder(new TitledBorder(new EtchedBorder(), "Fruit on Sale"));
+        TitledBorder titledBorder = (TitledBorder)centerPanel.getBorder();
+        // titledBorder.setTitleColor(new Color(92,157,153));
+        titledBorder.setTitleColor(Color.BLACK);
+
+        centerPanel.setBackground(new Color(183, 218, 212));
     }
 
     // MODIFIES: this
@@ -127,9 +147,9 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         addButton(product);
         removeButton(product);
 
-        panel1.add(addItemButton);
-        panel1.add(removeItemButton);
-        panel.add(panel1);
+        centerPanel.add(addItemButton);
+        centerPanel.add(removeItemButton);
+        panel.add(centerPanel);
         setVisible(true);
     }
 
@@ -141,6 +161,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         removeItemButton.setBounds(100, 100, 100, 4);
         removeItemButton.setForeground(Color.BLACK);
 
+        // EFFECTS: remove item to shopping cart when button clicked
         removeItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -159,6 +180,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         addItemButton.setBounds(100, 100, 100, 4);
         addItemButton.setForeground(Color.BLACK);
 
+        // EFFECTS: add item to shopping cart when button clicked
         addItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -203,85 +225,91 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
 
         writeAndReadData();
 
-        panel2 = new JPanel();
+        bottomPanel = new JPanel();
 
-        panel2.add(saveButton);
-        panel2.add(loadButton);
-        panel2.setBackground(new Color(92,157,153));
+        bottomPanel.add(saveButton);
+        bottomPanel.add(loadButton);
+        bottomPanel.setBackground(new Color(92,157,153));
 
-        add(panel2, BorderLayout.SOUTH);
+        add(bottomPanel, BorderLayout.SOUTH);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
         setVisible(true);
     }
 
-    // EFFECTS: display list of items that the user bought
+    // EFFECTS: display list of items that the user bought on the right side of the panel
     public void savedShoppingCartTable() {
-        panel3 = new JPanel();
-        panel3.setBackground(new Color(201,218,216));
+        rightPanel = new JPanel();
+        rightPanel.setBorder(new TitledBorder(new EtchedBorder(), "Shopping Cart"));
 
-        JScrollPane scrollPane = new JScrollPane();
-        itemList = new JList(items.getItems().toArray());
+        invoicePane = new JTextArea(30, 20);
+        invoicePane.setEditable(false);
+        invoicePane.setDisabledTextColor(Color.BLACK);
+
+        invoicePane.setBackground(Color.WHITE);
 
         viewButton();
 
-        scrollPane.setViewportView(itemList);
-        itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        itemList.setSelectedIndex(0);
-        panel3.add(scrollPane);
-        add(panel3, BorderLayout.EAST);
+        rightPanel.add(scrollPane);
+        add(rightPanel, BorderLayout.EAST);
+
+        pack();
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    // EFFECTS: view shopping cart, updates everytime a user adds or remove a new item
+    // EFFECTS: view invoice for shopping cart, updates everytime a user adds or remove a new item
     private void viewButton() {
-        viewShoppingCartButton = new JButton("View Shopping Cart");
-        viewShoppingCartButton.setBackground(new Color(183, 218, 212));
-        viewShoppingCartButton.setBounds(100, 100, 100, 4);
-        viewShoppingCartButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        panel2.add(viewShoppingCartButton);
+        viewInvoiceButton = new JButton("View Invoice");
+        viewInvoiceButton.setBackground(new Color(183, 218, 212));
+        viewInvoiceButton.setBounds(100, 100, 100, 4);
+        viewInvoiceButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        bottomPanel.add(viewInvoiceButton);
 
-        viewShoppingCartButton.addActionListener(new ActionListener() {
+        scrollPane = new JScrollPane(invoicePane);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        // print invoice with updated number of items and total price
+        viewInvoiceButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int size = itemList.getModel().getSize();
-                StringBuilder allItems = new StringBuilder("Items purchased:");
-                for (int i = 0; i < size; i++) {
-                    allItems.append("\n").append(itemList.getModel().getElementAt(i));
-                }
-                System.out.print(itemList);
+                String invoiceItems = "\t" + items.printInvoice();
+                invoiceItems += "\n Total Items: " + items.getNumItem()
+                        + "\n Total Price: $" + items.getPriceAltogether() + "\n"
+                        + "\n Thank you for shopping with us!";
+                invoicePane.setText(invoiceItems);
             }
         });
+        pack();
     }
 
     // EFFECTS: button for user to finish shopping,
     // shows image of thank you message when button is clicked (visual component)
     public void finishShopping() {
-        frame = new JFrame("Thank you! See you again ♡");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(Color.white);
-        frame.setLayout(new FlowLayout());
-
         finishShoppingButton = new JButton("Finish Shopping");
         finishShoppingButton.setBackground(new Color(183, 218, 212));
         finishShoppingButton.setBounds(100, 100, 100, 4);
         finishShoppingButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        panel2.add(finishShoppingButton);
+        bottomPanel.add(finishShoppingButton);
 
+        // EFFECTS: show new frame with thank you image when button clicked
         finishShoppingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame = new JFrame("Thank you! See you again ♡");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.getContentPane().setBackground(Color.WHITE);
+                frame.setLayout(new FlowLayout());
                 ImageIcon icon = new ImageIcon("./images/thankyou.jpg");
                 JLabel label = new JLabel(icon);
                 frame.add(label);
                 frame.pack();
                 frame.setSize(500,500);
                 dispose();
+                frame.setVisible(true);
             }
         });
-
         pack();
-        frame.setVisible(true);
     }
 
     // EFFECTS: load and write the data to JSON file
@@ -293,6 +321,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     // EFFECTS: when button is pressed it saves current state of shopping cart,
     // along with the information in it to JSON file
     private void saveData() {
+        // EFFECTS: save to JSON file when button clicked
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -311,6 +340,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     // EFFECTS: load JSON data into GUI, updates the total price and total quantity of the shopping
     // cart when button is pressed. user is allowed to retrieve data from existing JSON file
     private void loadData() {
+        // EFFECTS: load current JSON file when button clicked
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

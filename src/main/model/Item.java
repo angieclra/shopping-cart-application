@@ -3,6 +3,8 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.text.DecimalFormat;
+
 // Represents a single item having a name, quantity, and price
 public class Item implements Writable {
 
@@ -23,8 +25,8 @@ public class Item implements Writable {
         this.itemName = itemName;
     }
 
-    public void setPrice(double price) {
-        this.itemPrice = price;
+    public void setPrice(double itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
     public void setImage(String itemImage) {
@@ -36,6 +38,7 @@ public class Item implements Writable {
     }
 
     public double getItemPrice() {
+
         return itemPrice;
     }
 

@@ -1,5 +1,7 @@
 package model;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -66,7 +68,7 @@ public class ShoppingCart implements Writable {
     public String printInvoice() {
         String content;
 
-        content = "INVOICE\n" + "_____________";
+        content = "INVOICE\n" + "__________________________________";
         for (int i = 0; i < getNumItem(); i++) {
             content += "\nName: " + shoppingCartItems.get(i).getItemName().toUpperCase(Locale.ROOT) + "\nPrice: $"
                     + shoppingCartItems.get(i).getItemPrice() + "\n--------------";

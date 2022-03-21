@@ -1,7 +1,7 @@
 {
     "cartPrice": 0,
     "cartName": "Angie's Shopping Cart",
-    "invoice": "INVOICE\n_____________",
+    "invoice": "INVOICE\n__________________________________",
     "items": [],
     "cartNumberOfItems": 0
 }
