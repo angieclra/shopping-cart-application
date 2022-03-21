@@ -14,8 +14,8 @@ class ShoppingCartTest {
     @BeforeEach
     public void setup() {
         testShoppingCart = new ShoppingCart("Angie's Shopping Cart");
-        apple = new Item("Apple", 2.00);
-        banana = new Item("Banana", 4.00);
+        apple = new Item("Apple", 2.00, "./images/apple.png");
+        banana = new Item("Banana", 4.00, "./images/banana.jpg");
     }
 
     @Test

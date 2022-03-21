@@ -74,6 +74,7 @@ public class ShoppingCart implements Writable {
         return content;
     }
 
+    // EFFECTS: return JSON as a JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

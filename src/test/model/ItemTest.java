@@ -11,13 +11,14 @@ public class ItemTest {
 
     @BeforeEach
     public void setup() {
-        testItem = new Item("apple", 1.99);
+        testItem = new Item("apple", 1.99, "./images/apple.png");
     }
 
     @Test
     public void testConstructor() {
         assertEquals("apple", testItem.getItemName());
         assertEquals(1.99, testItem.getItemPrice());
+        assertEquals("./images/apple.png", testItem.getItemImage());
     }
 
     @Test

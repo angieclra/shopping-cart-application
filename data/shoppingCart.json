@@ -1,16 +1,11 @@
 {
-    "cartPrice": 9,
+    "cartPrice": 5.250000000000002,
     "cartName": "Angie's Shopping Cart",
-    "invoice": "INVOICE\n_____________\nName: APPLE\nPrice: $5.0\n--------------\nName: BANANA\nPrice: $4.0\n--------------",
-    "items": [
-        {
-            "price": 5,
-            "name": "apple"
-        },
-        {
-            "price": 4,
-            "name": "banana"
-        }
-    ],
-    "cartNumberOfItems": 2
+    "invoice": "INVOICE\n_____________\nName: GRAPE\nPrice: $5.25\n--------------",
+    "items": [{
+        "image": "./images/grape.jpg",
+        "price": 5.25,
+        "name": "Grape"
+    }],
+    "cartNumberOfItems": 1
 }

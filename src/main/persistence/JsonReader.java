@@ -63,7 +63,8 @@ public class JsonReader {
     private void addItem(ShoppingCart sc, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Double price = jsonObject.getDouble("price");
-        Item item = new Item(name, price);
+        String image = jsonObject.getString("image");
+        Item item = new Item(name, price, image);
         sc.addToCart(item);
     }
 

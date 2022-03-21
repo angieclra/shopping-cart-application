@@ -91,6 +91,7 @@ public class ShoppingCartApp {
     private void doAdd() {
         String name;
         double price;
+        String image;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("What is the name of your item?");
@@ -99,7 +100,10 @@ public class ShoppingCartApp {
         System.out.println("How much is the price?");
         price = sc.nextDouble();
 
-        cart.addToCart(new Item(name, price));
+        System.out.println("Location of image");
+        image = sc.next();
+
+        cart.addToCart(new Item(name, price, image));
         System.out.println(name.toUpperCase() + " successfully added to cart.");
 
     }
@@ -110,7 +114,6 @@ public class ShoppingCartApp {
     private void doRemove() {
         String answer;
         String name;
-        int quantity;
 
         System.out.println("Are you sure you want to remove item(s) from the cart? (y/n)");
         answer = sc.next();
@@ -119,7 +122,7 @@ public class ShoppingCartApp {
             System.out.println("Name of item you would like to remove:");
             name = sc.next();
             cart.removeFromCart(name);
-            System.out.println(name.toUpperCase() + " successfully removed from cart.");
+            System.out.println(name.toUpperCase() + "  successfully removed from cart.");
         } else if (answer.equals("n")) {
             System.out.println("Please pick another option to proceed.");
             displayMenu();
