@@ -23,8 +23,11 @@ class ShoppingCartTest {
         assertEquals("Angie's Shopping Cart", testShoppingCart.getCartName());
         assertEquals("Apple", apple.getItemName());
         assertEquals(2.00, apple.getItemPrice());
+        assertEquals("./images/apple.png", apple.getItemImage());
+
         assertEquals("Banana", banana.getItemName());
         assertEquals(4.00, banana.getItemPrice());
+        assertEquals("./images/banana.jpg", banana.getItemImage());
     }
 
     @Test

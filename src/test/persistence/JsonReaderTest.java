@@ -44,8 +44,8 @@ public class JsonReaderTest extends JsonTest {
             List<Item> items = sc.getItems();
             assertEquals(2, items.size());
             assertEquals(6.05, sc.getPriceAltogether());
-            checkItem("apple", 3.0, items.get(0));
-            checkItem("banana", 3.05, items.get(1));
+            checkItem("apple", 3.0, "./images/apple.jpg", items.get(0));
+            checkItem("banana", 3.05, "./images/banana.png", items.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

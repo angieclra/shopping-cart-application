@@ -1,16 +1,9 @@
 package ui;
 
-import java.awt.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import model.ShoppingCart;
 import model.Item;
-import persistence.JsonReader;
-import persistence.JsonWriter;
-
-import javax.swing.*;
-import javax.xml.crypto.Data;
 
 public class Main {
 
@@ -22,7 +15,7 @@ public class Main {
         list.addToCart(new Item("Strawberry", 3.85, "./images/strawberry.png"));
         list.addToCart(new Item("Orange", 2.49, "./images/orange.jpg"));
 
-        ShoppingFrame frame = new ShoppingFrame(list);
+        ShoppingCartFrame frame = new ShoppingCartFrame(list);
         frame.setVisible(true);
     }
 

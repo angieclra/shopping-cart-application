@@ -5,9 +5,7 @@ import model.ShoppingCart;
 import persistence.JsonWriter;
 import persistence.JsonReader;
 
-import java.beans.PropertyChangeListener;
 import java.io.FileNotFoundException;
-import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -16,12 +14,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 
-
-public class ShoppingFrame extends JFrame implements ActionListener {
+// Shopping Cart GUI
+public class ShoppingCartFrame extends JFrame implements ActionListener {
     static JFrame frame;
-
     private ShoppingCart items;
     private JTextField total;
     private JPanel panel;
@@ -30,31 +26,20 @@ public class ShoppingFrame extends JFrame implements ActionListener {
     private JPanel panel1;
     private JPanel panel2;
     private JPanel panel3;
-    private JPanel panelImage;
-    private JTextField quantity;
     private JTextField totalItems;
-    private Item product;
-    private double priceInputted;
-    private JPanel container;
     private JButton addItemButton;
     private JButton removeItemButton;
     private JButton viewShoppingCartButton;
     private JButton finishShoppingButton;
     private JButton loadButton;
     private JButton saveButton;
-
     private BufferedImage fruitImage;
     private BufferedImage fruitImageResized;
-
-    private BufferedImage addItemImage;
-    private BufferedImage addItemImageResized;
-
-    private JInternalFrame controlPanel;
-    private JDesktopPane desktop;
-
     private JList itemList;
 
-    public ShoppingFrame(ShoppingCart products) throws IOException {
+    // MODIFIES: this
+    // EFFECTS: sets the frame of the application
+    public ShoppingCartFrame(ShoppingCart products) throws IOException {
         setTitle(products.getCartName());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         items = new ShoppingCart("Angie's Shopping Cart");
@@ -76,6 +61,8 @@ public class ShoppingFrame extends JFrame implements ActionListener {
         finishShopping();
     }
 
+    // MODIFIES: this
+    // EFFECTS: total price and total quantity labels are made ***
     private void firstPanel(ShoppingCart products) throws IOException {
         panel = new JPanel();
         panel.setBackground(new Color(92,157,153));
@@ -103,6 +90,8 @@ public class ShoppingFrame extends JFrame implements ActionListener {
         pack();
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays each of the item name, price, and image that are available on the shopping cart app
     public void addItem(final Item product, JPanel panel) throws IOException {
         panel1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel1.setBackground(new Color(183, 218, 212));
@@ -132,6 +121,8 @@ public class ShoppingFrame extends JFrame implements ActionListener {
         buttons(product);
     }
 
+    // MODIFIES: this
+    // EFFECTS: add both the add button and remove button to the panel
     public void buttons(final Item product) {
         addButton(product);
         removeButton(product);
@@ -142,6 +133,9 @@ public class ShoppingFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: remove button is made, when button is clicked, item decrease by one quantity,
+    // total price and total quantity are updated
     private void removeButton(Item product) {
         removeItemButton = new JButton("Remove Item");
         removeItemButton.setBounds(100, 100, 100, 4);
@@ -157,6 +151,9 @@ public class ShoppingFrame extends JFrame implements ActionListener {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: add button is made, when button is clicked  item increase by one quantity
+    // total price and total quantity are updated
     private void addButton(Item product) {
         addItemButton = new JButton("Add Item");
         addItemButton.setBounds(100, 100, 100, 4);
@@ -172,21 +169,27 @@ public class ShoppingFrame extends JFrame implements ActionListener {
         });
     }
 
+    // EFFECTS: updates the text field of total everytime a user
+    // adds or remove an item off the shopping cart
     public void updateTotal() {
         double amount = items.getPriceAltogether();
         total.setText(NumberFormat.getCurrencyInstance().format(amount));
     }
 
+    // EFFECTS: updates the text field of totalItems everytime a user
+    // adds or remove an item off the shopping cart
     public void updateTotalQuantity() {
         int numberItems = items.getNumItem();
         totalItems.setText(NumberFormat.getIntegerInstance().format(numberItems));
     }
 
+    // EFFECTS: implementing ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO auto-generated method stub
     }
 
+    // EFFECTS: save and load buttons are made
     public void saveLoadButtons() {
         saveButton = new JButton("Save Shopping Cart");
         saveButton.setBackground(new Color(183, 218, 212));
@@ -212,6 +215,7 @@ public class ShoppingFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    // EFFECTS: display list of items that the user bought
     public void savedShoppingCartTable() {
         panel3 = new JPanel();
         panel3.setBackground(new Color(201,218,216));
@@ -229,6 +233,7 @@ public class ShoppingFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    // EFFECTS: view shopping cart, updates everytime a user adds or remove a new item
     private void viewButton() {
         viewShoppingCartButton = new JButton("View Shopping Cart");
         viewShoppingCartButton.setBackground(new Color(183, 218, 212));
@@ -250,9 +255,9 @@ public class ShoppingFrame extends JFrame implements ActionListener {
     }
 
     // EFFECTS: button for user to finish shopping,
-    // shows image of thank you message when button is clicked.
+    // shows image of thank you message when button is clicked (visual component)
     public void finishShopping() {
-        frame = new JFrame("Thank you! See you again.");
+        frame = new JFrame("Thank you! See you again ♡");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(Color.white);
         frame.setLayout(new FlowLayout());
@@ -271,17 +276,22 @@ public class ShoppingFrame extends JFrame implements ActionListener {
                 frame.add(label);
                 frame.pack();
                 frame.setSize(500,500);
+                dispose();
             }
         });
 
+        pack();
         frame.setVisible(true);
     }
 
+    // EFFECTS: load and write the data to JSON file
     public void writeAndReadData() {
         loadData();
         saveData();
     }
 
+    // EFFECTS: when button is pressed it saves current state of shopping cart,
+    // along with the information in it to JSON file
     private void saveData() {
         saveButton.addActionListener(new ActionListener() {
             @Override
@@ -298,6 +308,8 @@ public class ShoppingFrame extends JFrame implements ActionListener {
         });
     }
 
+    // EFFECTS: load JSON data into GUI, updates the total price and total quantity of the shopping
+    // cart when button is pressed. user is allowed to retrieve data from existing JSON file
     private void loadData() {
         loadButton.addActionListener(new ActionListener() {
             @Override
@@ -310,7 +322,6 @@ public class ShoppingFrame extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                List<Item> items1 = items.getItems();
             }
         });
     }
