@@ -60,7 +60,7 @@ public class JsonWriterTest extends JsonTest {
             assertEquals(2, items.size());
             assertEquals(6.05, sc.getPriceAltogether());
             checkItem("apple", 3.00, "./images/apple.png", items.get(0));
-            checkItem("banana", 3.05, "/images/grape.png", items.get(1));
+            checkItem("banana", 3.05, "./images/banana.jpg", items.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
