@@ -33,5 +33,11 @@ public class ItemTest {
         assertEquals(1.9, testItem.getItemPrice());
     }
 
+    @Test
+    public void testSetImage() {
+        testItem.setImage("./images/apple.png");
+        assertEquals("./images/apple.png", testItem.getItemImage());
+    }
+
 }
 
