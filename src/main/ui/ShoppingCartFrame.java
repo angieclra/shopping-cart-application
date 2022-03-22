@@ -70,6 +70,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         finishShopping();
     }
 
+
     // MODIFIES: this
     // EFFECTS: total price and total quantity labels are made ***
     private void firstPanel(ShoppingCart products) throws IOException {
@@ -101,6 +102,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         pack();
     }
 
+
     // MODIFIES: this
     // EFFECTS: displays each of the item name, price, and image that are available on the shopping cart app
     public void addItem(final Item product, JPanel panel) throws IOException {
@@ -131,6 +133,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         buttons(product);
     }
 
+
     private void initializeCenterPanel() {
         centerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         centerPanel.setBorder(new TitledBorder(new EtchedBorder(), "Fruit on Sale"));
@@ -140,6 +143,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
 
         centerPanel.setBackground(new Color(183, 218, 212));
     }
+
 
     // MODIFIES: this
     // EFFECTS: add both the add button and remove button to the panel
@@ -152,6 +156,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         panel.add(centerPanel);
         setVisible(true);
     }
+
 
     // MODIFIES: this
     // EFFECTS: remove button is made, when button is clicked, item decrease by one quantity,
@@ -172,6 +177,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         });
     }
 
+
     // MODIFIES: this
     // EFFECTS: add button is made, when button is clicked  item increase by one quantity
     // total price and total quantity are updated
@@ -191,12 +197,14 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         });
     }
 
+
     // EFFECTS: updates the text field of total everytime a user
     // adds or remove an item off the shopping cart
     public void updateTotal() {
         double amount = items.getPriceAltogether();
         total.setText(NumberFormat.getCurrencyInstance().format(amount));
     }
+
 
     // EFFECTS: updates the text field of totalItems everytime a user
     // adds or remove an item off the shopping cart
@@ -205,11 +213,13 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         totalItems.setText(NumberFormat.getIntegerInstance().format(numberItems));
     }
 
+
     // EFFECTS: implementing ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO auto-generated method stub
     }
+
 
     // EFFECTS: save and load buttons are made
     public void saveLoadButtons() {
@@ -237,6 +247,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+
     // EFFECTS: display list of items that the user bought on the right side of the panel
     public void shoppingCartInvoice() {
         rightPanel = new JPanel();
@@ -258,6 +269,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+
 
     // EFFECTS: view invoice for shopping cart, updates everytime a user adds or remove a new item
     private void viewInvoice() {
@@ -313,11 +325,13 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         pack();
     }
 
+
     // EFFECTS: load and write the data to JSON file
     public void writeAndReadData() {
         loadData();
         saveData();
     }
+
 
     // EFFECTS: when button is pressed it saves current state of shopping cart,
     // along with the information in it to JSON file
@@ -337,6 +351,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
             }
         });
     }
+
 
     // EFFECTS: load JSON data into GUI, updates the total price and total quantity of the shopping
     // cart when button is pressed. user is allowed to retrieve data from existing JSON file

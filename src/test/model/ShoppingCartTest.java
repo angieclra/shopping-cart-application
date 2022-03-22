@@ -106,7 +106,7 @@ class ShoppingCartTest {
     @Test
     public void testPrintInvoice() {
         testShoppingCart.addToCart(apple);
-        assertEquals("INVOICE\n__________________________________\nName: APPLE\nPrice: $2.0\n------------------------------",
+        assertEquals("INVOICE\n__________________________________\n1. Name: APPLE\nPrice: $2.0\n------------------------------",
                 testShoppingCart.printInvoice());
     }
 
