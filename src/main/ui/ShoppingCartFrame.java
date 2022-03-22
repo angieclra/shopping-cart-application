@@ -129,7 +129,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         centerPanel.add(label);
         panel.add(centerPanel);
 
-        label = new JLabel("\tPrice: $ " + product.getItemPrice());
+        label = new JLabel("\t- Price: $ " + product.getItemPrice());
         label.setFont(new Font("Sans Serif", Font.PLAIN, 15));
         label.setForeground(Color.WHITE);
         centerPanel.add(label);
@@ -220,13 +220,9 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     // adds or remove an item off the shopping cart
     public void updateTotal() {
         amount = items.getPriceAltogether();
-        total.setText(NumberFormat.getCurrencyInstance().format(amount));
         NumberFormat formatter = new DecimalFormat("#0.00");
         formatter.format(amount);
-
-        if (numberItems == 0) {
-            amount = 0;
-        }
+        total.setText(NumberFormat.getCurrencyInstance().format(amount));
     }
 
 
@@ -311,8 +307,8 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String invoiceItems = "\t" + items.printInvoice();
-                invoiceItems += "\n Total Items: " + numberItems
-                        + "\n Total Price: $" + amount + "\n"
+                invoiceItems += "\n Total Items: " + totalItems.getText()
+                        + "\n Total Price: " + total.getText() + "\n"
                         + "\n Thank you for shopping with us!";
                 invoicePane.setText(invoiceItems);
             }

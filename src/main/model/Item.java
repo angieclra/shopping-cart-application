@@ -39,8 +39,6 @@ public class Item implements Writable {
     }
 
     public double getItemPrice() {
-        NumberFormat formatter = new DecimalFormat("#0.00");
-        formatter.format(itemPrice);
         return itemPrice;
     }
 
