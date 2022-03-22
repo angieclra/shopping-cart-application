@@ -13,6 +13,7 @@ import persistence.Writable;
 
 // Represents a shopping cart with the items purchased in it
 public class ShoppingCart implements Writable {
+    private Item item;
     private ArrayList<Item> shoppingCartItems; // array list consisting of the items (objects)
     private double price; // add fields to represent changing properties of a shopping cart
     private String cartName;
@@ -40,11 +41,6 @@ public class ShoppingCart implements Writable {
                 price = getPriceAltogether() - item.getItemPrice();
             }
         }
-    }
-
-    public void removeFromCartGUI(Item item) {
-        shoppingCartItems.remove(item);
-        price -= item.getItemPrice();
     }
 
 

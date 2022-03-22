@@ -165,7 +165,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         removeItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                items.removeFromCartGUI(product);
+                items.removeFromCart(product.getItemName());
                 updateTotal();
                 updateTotalQuantity();
             }
