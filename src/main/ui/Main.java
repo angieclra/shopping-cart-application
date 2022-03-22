@@ -8,7 +8,7 @@ import model.Item;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ShoppingCart list = new ShoppingCart("Angelique's Shopping Cart");
+        ShoppingCart list = new ShoppingCart("♡ Angelique's Shopping Cart ♡");
         list.addToCart(new Item("Apple", 3.25, "./images/apple.png"));
         list.addToCart(new Item("Banana", 2.37, "./images/banana.jpg"));
         list.addToCart(new Item("Grape", 5.25, "./images/grape.jpg"));

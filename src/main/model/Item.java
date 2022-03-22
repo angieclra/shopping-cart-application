@@ -46,6 +46,7 @@ public class Item implements Writable {
         return itemImage;
     }
 
+    // EFFECTS: put item, along with the name, price and image into JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

@@ -94,7 +94,7 @@ public class ShoppingCart implements Writable {
         return json;
     }
 
-    // EFFECTS: return things in this shopping cart as a JSON array
+    // EFFECTS: return items in this shopping cart as a JSON array
     private JSONArray itemsToJson() {
         JSONArray jsonArray = new JSONArray();
 
