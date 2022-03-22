@@ -15,12 +15,16 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
 // Shopping Cart Frame
 public class ShoppingCartFrame extends JFrame implements ActionListener {
-    static JFrame frame;
+    private static JFrame frame;
+
+    private double amount;
+    private int numberItems;
 
     private ShoppingCart items;
     private JTextField total;
@@ -215,15 +219,21 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     // EFFECTS: updates the text field of total everytime a user
     // adds or remove an item off the shopping cart
     public void updateTotal() {
-        double amount = items.getPriceAltogether();
+        amount = items.getPriceAltogether();
         total.setText(NumberFormat.getCurrencyInstance().format(amount));
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        formatter.format(amount);
+
+        if (numberItems == 0) {
+            amount = 0;
+        }
     }
 
 
     // EFFECTS: updates the text field of totalItems everytime a user
     // adds or remove an item off the shopping cart
     public void updateTotalQuantity() {
-        int numberItems = items.getNumItem();
+        numberItems = items.getNumItem();
         totalItems.setText(NumberFormat.getIntegerInstance().format(numberItems));
     }
 
@@ -301,14 +311,15 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String invoiceItems = "\t" + items.printInvoice();
-                invoiceItems += "\n Total Items: " + items.getNumItem()
-                        + "\n Total Price: $" + items.getPriceAltogether() + "\n"
+                invoiceItems += "\n Total Items: " + numberItems
+                        + "\n Total Price: $" + amount + "\n"
                         + "\n Thank you for shopping with us!";
                 invoicePane.setText(invoiceItems);
             }
         });
         pack();
     }
+
 
     // EFFECTS: button for user to finish shopping,
     // shows image of thank you message when button is clicked

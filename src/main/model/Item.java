@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 // Represents a single item having a name, quantity, and price
 public class Item implements Writable {
@@ -38,7 +39,8 @@ public class Item implements Writable {
     }
 
     public double getItemPrice() {
-
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        formatter.format(itemPrice);
         return itemPrice;
     }
 
