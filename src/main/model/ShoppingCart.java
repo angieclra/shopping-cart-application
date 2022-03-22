@@ -42,6 +42,13 @@ public class ShoppingCart implements Writable {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: remove item from cart with the given name, helper function for GUI
+    public void removeFromCartGUI(Item item) {
+        shoppingCartItems.remove(item);
+        price -= item.getItemPrice();
+    }
+
 
     public List<Item> getItems() {
         return Collections.unmodifiableList(shoppingCartItems);
