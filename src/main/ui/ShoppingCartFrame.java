@@ -429,7 +429,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     // EFFECTS: implementing ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO auto-generated method stub
     }
 
 }
