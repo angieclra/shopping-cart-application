@@ -5,7 +5,6 @@ import model.ShoppingCart;
 import persistence.JsonWriter;
 import persistence.JsonReader;
 
-import java.io.FileNotFoundException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -394,7 +393,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
                 JsonWriter writer = new JsonWriter("./data/shoppingCart.json");
                 try {
                     writer.open();
-                } catch (FileNotFoundException ex) {
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
                 writer.write(items);
