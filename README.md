@@ -4,8 +4,8 @@
 
 In this **Shopping Cart Manager Application**:
 - The instruction and display menu of the shopping cart manager will be shown 
-- Ask the user to add items into the shopping cart
-- Give the user an option to remove items from the cart
+- Give the user the option to add items into the shopping cart
+- Give the user the option to remove items from the shopping cart
 - Print invoice for the shopping cart
 - Calculate the total items in the shopping cart
 - Calculate the total price of the whole shopping cart
