@@ -27,7 +27,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     private int numberItems;
 
     private ShoppingCart items;
-    private JTextField total;
+    private JTextField totalPrice;
     private JTextField totalItems;
 
     private JPanel topPanel;
@@ -64,10 +64,10 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
 
     // EFFECTS: set the text fields for total price and total quantity of the shopping cart
     private void setTotalField() {
-        total = new JTextField("$0.00",5);
-        total.setEditable(false);
-        total.setEnabled(false);
-        total.setDisabledTextColor(Color.BLACK);
+        totalPrice = new JTextField("$0.00",5);
+        totalPrice.setEditable(false);
+        totalPrice.setEnabled(false);
+        totalPrice.setDisabledTextColor(Color.BLACK);
 
         totalItems = new JTextField("0", 2);
         totalItems.setEditable(false);
@@ -104,7 +104,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
 
         // add all the labels and text fields to top panel
         topPanel.add(label);
-        topPanel.add(total);
+        topPanel.add(totalPrice);
         topPanel.add(label1);
         topPanel.add(totalItems);
         add(topPanel, BorderLayout.NORTH);
@@ -247,7 +247,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         amount = items.getPriceAltogether();
         NumberFormat formatter = new DecimalFormat("#0.00");
         formatter.format(amount);
-        total.setText(NumberFormat.getCurrencyInstance().format(amount));
+        totalPrice.setText(NumberFormat.getCurrencyInstance().format(amount));
     }
 
 
@@ -336,7 +336,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String invoiceItems = "\t" + items.printInvoice();
                 invoiceItems += "\n Total Items: " + totalItems.getText()
-                        + "\n Total Price: " + total.getText() + "\n"
+                        + "\n Total Price: " + totalPrice.getText() + "\n"
                         + "\n Thank you for shopping with us!";
                 invoicePane.setText(invoiceItems);
             }
