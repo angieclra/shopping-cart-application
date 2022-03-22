@@ -2,6 +2,7 @@ package model;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -56,9 +57,12 @@ public class ShoppingCart implements Writable {
 
     // EFFECTS: return the total of the whole shopping cart
     public double getPriceAltogether() {
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        formatter.format(price);
         return price;
     }
 
+    // EFFECTS: return the shopping cart name
     public String getCartName() {
         return cartName;
     }

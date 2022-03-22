@@ -18,9 +18,10 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-// Shopping Cart GUI
+// Shopping Cart Frame
 public class ShoppingCartFrame extends JFrame implements ActionListener {
     static JFrame frame;
+
     private ShoppingCart items;
     private JTextField total;
     private JTextField totalItems;
@@ -80,7 +81,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         panel.setBorder(new TitledBorder("Summary "));
 
         TitledBorder titledBorder = (TitledBorder)panel.getBorder();
-        // titledBorder.setTitleColor(new Color(92,157,153));
         titledBorder.setTitleFont(new Font("Monospaced", Font.ITALIC, 15));
         titledBorder.setTitleColor(Color.WHITE);
 
@@ -102,6 +102,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         pack();
     }
 
+    // EFFECTS: add labels for total price and quantity
     private void addLabels() {
         label = new JLabel("Total Price:");
         label.setFont(new Font("Helvetica", Font.BOLD, 25));
@@ -124,8 +125,8 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         centerPanel.add(label);
         panel.add(centerPanel);
 
-        label = new JLabel("\tPRICE: $ " + product.getItemPrice());
-        label.setFont(new Font("Monospaced", Font.PLAIN, 15));
+        label = new JLabel("\tPrice: $ " + product.getItemPrice());
+        label.setFont(new Font("Sans Serif", Font.PLAIN, 15));
         label.setForeground(Color.WHITE);
         centerPanel.add(label);
         panel.add(centerPanel);
@@ -144,6 +145,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     }
 
 
+    // EFFECTS: initialized the center panel
     private void initializeCenterPanel() {
         centerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         centerPanel.setBorder(new TitledBorder(new EtchedBorder(), "ON SALE "));
@@ -309,7 +311,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     }
 
     // EFFECTS: button for user to finish shopping,
-    // shows image of thank you message when button is clicked (visual component)
+    // shows image of thank you message when button is clicked
     public void finishShopping() {
         finishShoppingButton = new JButton("Finish Shopping");
         finishShoppingButton.setBounds(100, 100, 100, 4);

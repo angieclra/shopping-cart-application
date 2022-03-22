@@ -1,8 +1,33 @@
 {
-    "cartPrice": 17,
+    "cartPrice": 34,
     "cartName": "Angelique's Shopping Cart",
-    "invoice": "INVOICE\n__________________________________\n1. Name: APPLE\nPrice: $3.25\n------------------------------\n2. Name: BANANA\nPrice: $2.37\n------------------------------\n3. Name: GRAPE\nPrice: $5.25\n------------------------------\n4. Name: STRAWBERRY\nPrice: $3.68\n------------------------------\n5. Name: ORANGE\nPrice: $2.45\n------------------------------",
+    "invoice": "INVOICE\n__________________________________\n1. Name: APPLE\nPrice: $3.25\n------------------------------\n2. Name: BANANA\nPrice: $2.37\n------------------------------\n3. Name: GRAPE\nPrice: $5.25\n------------------------------\n4. Name: STRAWBERRY\nPrice: $3.68\n------------------------------\n5. Name: ORANGE\nPrice: $2.45\n------------------------------\n6. Name: APPLE\nPrice: $3.25\n------------------------------\n7. Name: BANANA\nPrice: $2.37\n------------------------------\n8. Name: GRAPE\nPrice: $5.25\n------------------------------\n9. Name: STRAWBERRY\nPrice: $3.68\n------------------------------\n10. Name: ORANGE\nPrice: $2.45\n------------------------------",
     "items": [
+        {
+            "image": "./images/apple.png",
+            "price": 3.25,
+            "name": "Apple"
+        },
+        {
+            "image": "./images/banana.jpg",
+            "price": 2.37,
+            "name": "Banana"
+        },
+        {
+            "image": "./images/grape.jpg",
+            "price": 5.25,
+            "name": "Grape"
+        },
+        {
+            "image": "./images/strawberry.png",
+            "price": 3.68,
+            "name": "Strawberry"
+        },
+        {
+            "image": "./images/orange.jpg",
+            "price": 2.45,
+            "name": "Orange"
+        },
         {
             "image": "./images/apple.png",
             "price": 3.25,
@@ -29,5 +54,5 @@
             "name": "Orange"
         }
     ],
-    "cartNumberOfItems": 5
+    "cartNumberOfItems": 10
 }
