@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 // Shopping Cart GUI
 public class ShoppingCartFrame extends JFrame implements ActionListener {
@@ -73,18 +74,17 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
 
     // MODIFIES: this
     // EFFECTS: total price and total quantity labels are made ***
-    private void firstPanel(ShoppingCart products) throws IOException {
+    public void firstPanel(ShoppingCart products) throws IOException {
         panel = new JPanel();
-        panel.setBackground(new Color(92,157,153));
-        panel.setBorder(new TitledBorder("Summary"));
+        panel.setBackground(new Color(255,136,134));
+        panel.setBorder(new TitledBorder("Summary "));
 
-        label = new JLabel("Total Price:");
-        label.setFont(new Font("Helvetica", Font.ITALIC, 22));
-        label.setForeground(Color.WHITE);
+        TitledBorder titledBorder = (TitledBorder)panel.getBorder();
+        // titledBorder.setTitleColor(new Color(92,157,153));
+        titledBorder.setTitleFont(new Font("Monospaced", Font.ITALIC, 15));
+        titledBorder.setTitleColor(Color.WHITE);
 
-        label1 = new JLabel("Total Quantity:");
-        label1.setFont(new Font("Helvetica", Font.ITALIC, 22));
-        label1.setForeground(Color.WHITE);
+        addLabels();
 
         panel.add(label);
         panel.add(total);
@@ -102,20 +102,30 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         pack();
     }
 
+    private void addLabels() {
+        label = new JLabel("Total Price:");
+        label.setFont(new Font("Helvetica", Font.BOLD, 25));
+        label.setForeground(Color.WHITE);
+
+        label1 = new JLabel("Total Quantity:");
+        label1.setFont(new Font("Helvetica", Font.BOLD, 25));
+        label1.setForeground(Color.WHITE);
+    }
+
 
     // MODIFIES: this
     // EFFECTS: displays each of the item name, price, and image that are available on the shopping cart app
     public void addItem(final Item product, JPanel panel) throws IOException {
         initializeCenterPanel();
 
-        label = new JLabel("" + product.getItemName());
+        label = new JLabel("" + product.getItemName().toUpperCase(Locale.ROOT));
         label.setFont(new Font("Helvetica", Font.BOLD, 20));
         label.setForeground(Color.WHITE);
         centerPanel.add(label);
         panel.add(centerPanel);
 
-        label = new JLabel("- Price: $" + product.getItemPrice());
-        label.setFont(new Font("Helvetica", Font.PLAIN, 15));
+        label = new JLabel("\tPRICE: $ " + product.getItemPrice());
+        label.setFont(new Font("Monospaced", Font.PLAIN, 15));
         label.setForeground(Color.WHITE);
         centerPanel.add(label);
         panel.add(centerPanel);
@@ -136,12 +146,12 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
 
     private void initializeCenterPanel() {
         centerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        centerPanel.setBorder(new TitledBorder(new EtchedBorder(), "Fruit on Sale"));
+        centerPanel.setBorder(new TitledBorder(new EtchedBorder(), "ON SALE "));
         TitledBorder titledBorder = (TitledBorder)centerPanel.getBorder();
-        // titledBorder.setTitleColor(new Color(92,157,153));
-        titledBorder.setTitleColor(Color.BLACK);
+        titledBorder.setTitleFont(new Font("Helvetica", Font.ITALIC, 12));
+        titledBorder.setTitleColor(Color.WHITE);
 
-        centerPanel.setBackground(new Color(183, 218, 212));
+        centerPanel.setBackground(new Color(255,204,203));
     }
 
 
@@ -165,6 +175,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         removeItemButton = new JButton("Remove Item");
         removeItemButton.setBounds(100, 100, 100, 4);
         removeItemButton.setForeground(Color.BLACK);
+        removeItemButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
 
         // EFFECTS: remove item to shopping cart when button clicked
         removeItemButton.addActionListener(new ActionListener() {
@@ -185,6 +196,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         addItemButton = new JButton("Add Item");
         addItemButton.setBounds(100, 100, 100, 4);
         addItemButton.setForeground(Color.BLACK);
+        addItemButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
 
         // EFFECTS: add item to shopping cart when button clicked
         addItemButton.addActionListener(new ActionListener() {
@@ -224,12 +236,10 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     // EFFECTS: save and load buttons are made
     public void saveLoadButtons() {
         saveButton = new JButton("Save Shopping Cart");
-        saveButton.setBackground(new Color(183, 218, 212));
         saveButton.setBounds(100, 100, 100, 4);
         saveButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
 
         loadButton = new JButton("Load Shopping Cart");
-        loadButton.setBackground(new Color(183, 218, 212));
         loadButton.setBounds(100, 100, 100, 4);
         loadButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
 
@@ -239,7 +249,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
 
         bottomPanel.add(saveButton);
         bottomPanel.add(loadButton);
-        bottomPanel.setBackground(new Color(92,157,153));
+        bottomPanel.setBackground(new Color(255,168,181));
 
         add(bottomPanel, BorderLayout.SOUTH);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -251,7 +261,10 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     // EFFECTS: display list of items that the user bought on the right side of the panel
     public void shoppingCartInvoice() {
         rightPanel = new JPanel();
-        rightPanel.setBorder(new TitledBorder(new EtchedBorder(), "Shopping Cart"));
+        rightPanel.setBorder(new TitledBorder(new EtchedBorder(), "Invoice "));
+        rightPanel.setBackground(new Color(255,233,224));
+        TitledBorder titledBorder = (TitledBorder)rightPanel.getBorder();
+        titledBorder.setTitleFont(new Font("Monospaced", Font.ITALIC, 15));
 
         invoicePane = new JTextArea(30, 20);
         invoicePane.setEditable(false);
@@ -274,7 +287,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     // EFFECTS: view invoice for shopping cart, updates everytime a user adds or remove a new item
     private void viewInvoice() {
         viewInvoiceButton = new JButton("View Invoice");
-        viewInvoiceButton.setBackground(new Color(183, 218, 212));
         viewInvoiceButton.setBounds(100, 100, 100, 4);
         viewInvoiceButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
         bottomPanel.add(viewInvoiceButton);
@@ -300,7 +312,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     // shows image of thank you message when button is clicked (visual component)
     public void finishShopping() {
         finishShoppingButton = new JButton("Finish Shopping");
-        finishShoppingButton.setBackground(new Color(183, 218, 212));
         finishShoppingButton.setBounds(100, 100, 100, 4);
         finishShoppingButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
         bottomPanel.add(finishShoppingButton);
@@ -313,7 +324,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.getContentPane().setBackground(Color.WHITE);
                 frame.setLayout(new FlowLayout());
-                ImageIcon icon = new ImageIcon("./images/thankyou.jpg");
+                ImageIcon icon = new ImageIcon("./images/thank you.jpg");
                 JLabel label = new JLabel(icon);
                 frame.add(label);
                 frame.pack();

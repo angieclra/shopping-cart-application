@@ -38,6 +38,7 @@ public class ShoppingCart implements Writable {
             if (item.getItemName().equals(name)) {
                 shoppingCartItems.remove(item);
                 price = getPriceAltogether() - item.getItemPrice();
+                return;
             }
         }
     }
@@ -70,7 +71,7 @@ public class ShoppingCart implements Writable {
 
         content = "INVOICE\n" + "__________________________________";
         for (int i = 0; i < getNumItem(); i++) {
-            content += "\n" + (i + 1) + ". Name: "
+            content += "\n" + (i + 1) + "." + " Name: "
                     + shoppingCartItems.get(i).getItemName().toUpperCase(Locale.ROOT) + "\nPrice: $"
                     + shoppingCartItems.get(i).getItemPrice() + "\n------------------------------";
         }
