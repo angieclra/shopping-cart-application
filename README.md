@@ -3,7 +3,7 @@
 ### A shopping cart app to make your shopping life easier! :sparkles:
 
 In this **Shopping Cart Manager Application**:
-- The instruction and display menu of the shopping cart manager will be shown 
+- The display menu of the shopping cart manager will be shown along with the list of items
 - Give the user the option to add items into the shopping cart
 - Give the user the option to remove items from the shopping cart
 - Print invoice for the shopping cart
