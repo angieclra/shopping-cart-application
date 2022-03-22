@@ -1,7 +1,7 @@
 {
     "cartPrice": 17,
     "cartName": "Angelique's Shopping Cart",
-    "invoice": "INVOICE\n__________________________________\nName: APPLE\nPrice: $3.25\n--------------\nName: BANANA\nPrice: $2.37\n--------------\nName: GRAPE\nPrice: $5.25\n--------------\nName: STRAWBERRY\nPrice: $3.68\n--------------\nName: ORANGE\nPrice: $2.45\n--------------",
+    "invoice": "INVOICE\n__________________________________\nName: APPLE\nPrice: $3.25\n------------------------------\nName: BANANA\nPrice: $2.37\n------------------------------\nName: GRAPE\nPrice: $5.25\n------------------------------\nName: STRAWBERRY\nPrice: $3.68\n------------------------------\nName: ORANGE\nPrice: $2.45\n------------------------------",
     "items": [
         {
             "image": "./images/apple.png",

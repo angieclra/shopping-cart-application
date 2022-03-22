@@ -66,7 +66,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         firstPanel(products);
 
         saveLoadButtons();
-        savedShoppingCartTable();
+        shoppingCartInvoice();
         finishShopping();
     }
 
@@ -238,17 +238,18 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     }
 
     // EFFECTS: display list of items that the user bought on the right side of the panel
-    public void savedShoppingCartTable() {
+    public void shoppingCartInvoice() {
         rightPanel = new JPanel();
         rightPanel.setBorder(new TitledBorder(new EtchedBorder(), "Shopping Cart"));
 
         invoicePane = new JTextArea(30, 20);
         invoicePane.setEditable(false);
+        invoicePane.setEnabled(false);
         invoicePane.setDisabledTextColor(Color.BLACK);
 
         invoicePane.setBackground(Color.WHITE);
 
-        viewButton();
+        viewInvoice();
 
         rightPanel.add(scrollPane);
         add(rightPanel, BorderLayout.EAST);
@@ -259,7 +260,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     }
 
     // EFFECTS: view invoice for shopping cart, updates everytime a user adds or remove a new item
-    private void viewButton() {
+    private void viewInvoice() {
         viewInvoiceButton = new JButton("View Invoice");
         viewInvoiceButton.setBackground(new Color(183, 218, 212));
         viewInvoiceButton.setBounds(100, 100, 100, 4);

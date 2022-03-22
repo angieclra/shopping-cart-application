@@ -1,7 +1,7 @@
 {
     "cartPrice": 6.05,
     "cartName": "Angie's Shopping Cart",
-    "invoice": "INVOICE\n__________________________________\nName: APPLE\nPrice: $3.0\n--------------\nName: BANANA\nPrice: $3.05\n--------------",
+    "invoice": "INVOICE\n__________________________________\nName: APPLE\nPrice: $3.0\n------------------------------\nName: BANANA\nPrice: $3.05\n------------------------------",
     "items": [
         {
             "image": "./images/apple.png",

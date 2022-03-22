@@ -71,7 +71,7 @@ public class ShoppingCart implements Writable {
         content = "INVOICE\n" + "__________________________________";
         for (int i = 0; i < getNumItem(); i++) {
             content += "\nName: " + shoppingCartItems.get(i).getItemName().toUpperCase(Locale.ROOT) + "\nPrice: $"
-                    + shoppingCartItems.get(i).getItemPrice() + "\n--------------";
+                    + shoppingCartItems.get(i).getItemPrice() + "\n------------------------------";
         }
         return content;
     }
