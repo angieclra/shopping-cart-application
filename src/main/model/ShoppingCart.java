@@ -1,6 +1,5 @@
 package model;
 
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class ShoppingCart implements Writable {
         }
     }
 
-
+    // EFFECTS: returns an unmodifiable set of shopping cart items
     public List<Item> getItems() {
         return Collections.unmodifiableList(shoppingCartItems);
     }

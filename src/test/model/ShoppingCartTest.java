@@ -110,13 +110,4 @@ class ShoppingCartTest {
                 testShoppingCart.printInvoice());
     }
 
-//    @Test
-//    public void testRemoveGUI() {
-//        testShoppingCart.addToCart(banana);
-//        testShoppingCart.addToCart(apple);
-//        testShoppingCart.removeFromCartGUI(banana);
-//        assertEquals(2.0, testShoppingCart.getPriceAltogether());
-//        assertEquals(1, testShoppingCart.getNumItem());
-//    }
-
 }

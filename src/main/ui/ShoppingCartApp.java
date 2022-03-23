@@ -7,7 +7,6 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Locale;
 import java.util.Scanner;
 
 // Shopping Cart App
@@ -28,7 +27,7 @@ public class ShoppingCartApp {
 
     // Reference: https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
     // MODIFIES: this
-    // EFFECTSL processes user input
+    // EFFECTS: processes user input
     public void runApp() {
         boolean keepGoing = true;
         String command = null;
