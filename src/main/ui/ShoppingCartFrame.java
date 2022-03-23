@@ -20,12 +20,13 @@ import java.util.Locale;
 
 // Shopping Cart GUI Frame Application
 public class ShoppingCartFrame extends JFrame implements ActionListener {
-    private static JFrame frame;
-
     private double amount;
     private int numberItems;
 
     private ShoppingCart items;
+
+    private static JFrame frame;
+
     private JTextField totalPrice;
     private JTextField totalItems;
 
@@ -60,7 +61,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         initializeFinishShopping();
     }
 
-
     // EFFECTS: set the text fields for total price and total quantity of the shopping cart
     private void setTotalField() {
         totalPrice = new JTextField("$0.00",5);
@@ -74,14 +74,12 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         totalItems.setDisabledTextColor(Color.BLACK);
     }
 
-
     // MODIFIES: this
     // EFFECTS: set the title of the frame
     private void titleFrame(ShoppingCart products) {
         setTitle(products.getCartName());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
 
     // MODIFIES: this
     // EFFECTS: initialize top panel of the frame, with the labels for total price and total quantity
@@ -119,7 +117,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         pack();
     }
 
-
     // EFFECTS: add labels for total price and quantity
     private void addLabels() {
         label = new JLabel("Total Price:");
@@ -130,7 +127,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         label1.setFont(new Font("Helvetica", Font.BOLD, 25));
         label1.setForeground(Color.WHITE);
     }
-
 
     // MODIFIES: this
     // EFFECTS: displays each of the item name, price, and image that are available on the shopping cart app
@@ -168,7 +164,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         centerPanel.add(label);
     }
 
-
     // EFFECTS: initialized the center panel
     private void initializeCenterPanel() {
         centerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -179,7 +174,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
 
         centerPanel.setBackground(new Color(255,204,203));
     }
-
 
     // MODIFIES: this
     // EFFECTS: adds both the add button and remove button to the panel
@@ -194,7 +188,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
 
         setVisible(true);
     }
-
 
     // MODIFIES: this
     // EFFECTS: remove button is made, when button is clicked, items quantity decrease by one,
@@ -217,7 +210,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         });
     }
 
-
     // MODIFIES: this
     // EFFECTS: add button is made, when button is clicked, items quantity increase by one,
     // total price and total quantity are updated
@@ -239,7 +231,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         });
     }
 
-
     // EFFECTS: updates the text field of totalPrice everytime a user
     // adds or remove an item off the shopping cart
     public void updateTotalPrice() {
@@ -249,14 +240,12 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         totalPrice.setText(NumberFormat.getCurrencyInstance().format(amount));
     }
 
-
     // EFFECTS: updates the text field of totalItems everytime a user
     // adds or remove an item off the shopping cart
     public void updateTotalQuantity() {
         numberItems = items.getNumItem();
         totalItems.setText(NumberFormat.getIntegerInstance().format(numberItems));
     }
-
 
     // EFFECTS: initialize bottom panel along with add and remove buttons on the panel
     public void initializeBottomPanel() {
@@ -274,7 +263,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-
     // EFFECTS: save and load buttons are made
     private void saveAndLoadButton() {
         // save button
@@ -287,7 +275,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         loadButton.setBounds(100, 100, 100, 4);
         loadButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
     }
-
 
     // EFFECTS: display list of items that the user bought on the right side of the panel
     public void initializeInvoicePanel() {
@@ -307,7 +294,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-
     // EFFECTS: initialize invoice pane with scroll pane, user can scroll if items in large quantity
     private void initializeInvoicePane() {
         invoicePane = new JTextArea(30, 20);
@@ -320,7 +306,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         rightPanel.add(scrollPane);
     }
-
 
     // EFFECTS: view invoice for shopping cart, updates everytime a user adds or remove a new item
     private void viewInvoice() {
@@ -342,7 +327,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         });
         pack();
     }
-
 
     // EFFECTS: button for user to finish shopping,
     // shows image of thank you message when button is clicked
@@ -374,13 +358,11 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         pack();
     }
 
-
     // EFFECTS: load and write the data to JSON file
     public void writeAndReadData() {
         loadData();
         saveData();
     }
-
 
     // EFFECTS: when button is pressed it saves current state of shopping cart,
     // along with the information in it to JSON data
@@ -402,7 +384,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
         });
     }
 
-
     // EFFECTS: load JSON data, updates the total price and total quantity of the shopping
     // cart when button is pressed. user is allowed to retrieve data from existing JSON file
     private void loadData() {
@@ -422,7 +403,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
             }
         });
     }
-
 
     // MODIFIES: this
     // EFFECTS: implementing ActionListener
