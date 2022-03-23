@@ -19,7 +19,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 // Shopping Cart GUI Frame Application
-public class ShoppingCartFrame extends JFrame implements ActionListener {
+public class ShoppingCartFrame extends JFrame {
     private double amount;
     private int numberItems;
 
@@ -402,12 +402,6 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
                 }
             }
         });
-    }
-
-    // MODIFIES: this
-    // EFFECTS: implementing ActionListener
-    @Override
-    public void actionPerformed(ActionEvent e) {
     }
 
 }
