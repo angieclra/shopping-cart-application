@@ -240,7 +240,7 @@ public class ShoppingCartFrame extends JFrame implements ActionListener {
     }
 
 
-    // EFFECTS: updates the text field of total everytime a user
+    // EFFECTS: updates the text field of totalPrice everytime a user
     // adds or remove an item off the shopping cart
     public void updateTotalPrice() {
         amount = items.getPriceAltogether();
