@@ -1,4 +1,4 @@
-# Treat Your Self :white_heart:
+# Treat Yourself :white_heart:
 
 ### A shopping cart app to make your shopping life easier! :sparkles:
 
