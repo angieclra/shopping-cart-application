@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-// Shopping Cart Frame
+// Shopping Cart GUI Frame Application
 public class ShoppingCartFrame extends JFrame implements ActionListener {
     private static JFrame frame;
 

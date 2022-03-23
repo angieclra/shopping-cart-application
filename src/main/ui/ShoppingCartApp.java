@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-// Shopping Cart App
+// Shopping Cart Console
 public class ShoppingCartApp {
     private static final String JSON_STORE = "./data/shoppingCart.json";
     private ShoppingCart cart;
