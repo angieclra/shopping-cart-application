@@ -1,7 +1,7 @@
 {
-    "cartPrice": 34,
+    "cartPrice": 40,
     "cartName": "♡ Angelique's Shopping Cart ♡",
-    "invoice": "INVOICE\n__________________________________\n1. Name: APPLE\nPrice: $3.25\n------------------------------\n2. Name: BANANA\nPrice: $2.39\n------------------------------\n3. Name: GRAPE\nPrice: $5.26\n------------------------------\n4. Name: STRAWBERRY\nPrice: $3.63\n------------------------------\n5. Name: ORANGE\nPrice: $2.47\n------------------------------\n6. Name: APPLE\nPrice: $3.25\n------------------------------\n7. Name: BANANA\nPrice: $2.39\n------------------------------\n8. Name: GRAPE\nPrice: $5.26\n------------------------------\n9. Name: STRAWBERRY\nPrice: $3.63\n------------------------------\n10. Name: ORANGE\nPrice: $2.47\n------------------------------",
+    "invoice": "INVOICE\n__________________________________\n1. Name: APPLE\nPrice: $3.25\n------------------------------\n2. Name: BANANA\nPrice: $2.39\n------------------------------\n3. Name: GRAPE\nPrice: $5.26\n------------------------------\n4. Name: STRAWBERRY\nPrice: $3.18\n------------------------------\n5. Name: ORANGE\nPrice: $2.47\n------------------------------\n6. Name: PINEAPPLE\nPrice: $3.45\n------------------------------\n7. Name: APPLE\nPrice: $3.25\n------------------------------\n8. Name: BANANA\nPrice: $2.39\n------------------------------\n9. Name: GRAPE\nPrice: $5.26\n------------------------------\n10. Name: STRAWBERRY\nPrice: $3.18\n------------------------------\n11. Name: ORANGE\nPrice: $2.47\n------------------------------\n12. Name: PINEAPPLE\nPrice: $3.45\n------------------------------",
     "items": [
         {
             "image": "./images/apple.png",
@@ -20,13 +20,18 @@
         },
         {
             "image": "./images/strawberry.png",
-            "price": 3.63,
+            "price": 3.18,
             "name": "Strawberry"
         },
         {
             "image": "./images/orange.jpg",
             "price": 2.47,
             "name": "Orange"
+        },
+        {
+            "image": "./images/pineapple.jpg",
+            "price": 3.45,
+            "name": "Pineapple"
         },
         {
             "image": "./images/apple.png",
@@ -45,14 +50,19 @@
         },
         {
             "image": "./images/strawberry.png",
-            "price": 3.63,
+            "price": 3.18,
             "name": "Strawberry"
         },
         {
             "image": "./images/orange.jpg",
             "price": 2.47,
             "name": "Orange"
+        },
+        {
+            "image": "./images/pineapple.jpg",
+            "price": 3.45,
+            "name": "Pineapple"
         }
     ],
-    "cartNumberOfItems": 10
+    "cartNumberOfItems": 12
 }

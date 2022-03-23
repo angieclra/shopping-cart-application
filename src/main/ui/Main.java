@@ -12,8 +12,9 @@ public class Main {
         list.addToCart(new Item("Apple", 3.25, "./images/apple.png"));
         list.addToCart(new Item("Banana", 2.39, "./images/banana.jpg"));
         list.addToCart(new Item("Grape", 5.26, "./images/grape.jpg"));
-        list.addToCart(new Item("Strawberry", 3.63, "./images/strawberry.png"));
+        list.addToCart(new Item("Strawberry", 3.18, "./images/strawberry.png"));
         list.addToCart(new Item("Orange", 2.47, "./images/orange.jpg"));
+        list.addToCart(new Item("Pineapple", 3.45, "./images/pineapple.jpg"));
 
         ShoppingCartFrame frame = new ShoppingCartFrame(list);
         frame.setVisible(true);
