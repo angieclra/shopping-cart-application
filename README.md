@@ -61,3 +61,8 @@ Item removed from shopping cart
 
 Mon Mar 28 17:21:41 PDT 2022
 Invoice of shopping cart printed
+
+## Phase 4: Task 3
+If I have more time to work on my project, I would refactor my code in my ```ShoppingCartFrame``` class. Instead of 
+making it in a single big class, I would split it to multiple classes, as it will be hard to debug. 
+Breaking the code to more classes would make the code more testable, maintainable, and reusable.
