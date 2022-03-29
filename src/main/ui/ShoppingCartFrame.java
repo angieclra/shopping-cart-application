@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Item;
 import model.ShoppingCart;
 import persistence.JsonWriter;
@@ -24,6 +26,7 @@ public class ShoppingCartFrame extends JFrame {
     private int numberItems;
 
     private ShoppingCart items;
+    private EventLog eventLog;
 
     private static JFrame frame;
 
@@ -44,6 +47,7 @@ public class ShoppingCartFrame extends JFrame {
     private JButton removeItemButton;
     private JButton viewInvoiceButton;
     private JButton finishShoppingButton;
+    private JButton quitShoppingButton;
     private JButton loadButton;
     private JButton saveButton;
 
@@ -59,11 +63,12 @@ public class ShoppingCartFrame extends JFrame {
         initializeBottomPanel();
         initializeInvoicePanel();
         initializeFinishShopping();
+        initializeQuitShopping();
     }
 
     // EFFECTS: set the text fields for total price and total quantity of the shopping cart
     private void setTotalField() {
-        totalPrice = new JTextField("$0.00",5);
+        totalPrice = new JTextField("$0.00", 5);
         totalPrice.setEditable(false);
         totalPrice.setEnabled(false);
         totalPrice.setDisabledTextColor(Color.BLACK);
@@ -75,10 +80,17 @@ public class ShoppingCartFrame extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: set the title of the frame
+    // EFFECTS: set the title of the frame, when closed print log of events
     private void titleFrame(ShoppingCart products) {
         setTitle(products.getCartName());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                quit();
+            }
+        });
     }
 
     // MODIFIES: this
@@ -91,7 +103,7 @@ public class ShoppingCartFrame extends JFrame {
         setTotalField();
 
         topPanel = new JPanel();
-        topPanel.setBackground(new Color(255,136,134));
+        topPanel.setBackground(new Color(255, 136, 134));
         topPanel.setBorder(new TitledBorder("Summary "));
         TitledBorder titledBorder = (TitledBorder) topPanel.getBorder();
         titledBorder.setTitleFont(new Font("Monospaced", Font.ITALIC, 15));
@@ -107,7 +119,7 @@ public class ShoppingCartFrame extends JFrame {
         add(topPanel, BorderLayout.NORTH);
 
         // for loop for displaying every item in the shopping cart on the top panel
-        topPanel = new JPanel(new GridLayout(products.getNumItem(),1));
+        topPanel = new JPanel(new GridLayout(products.getNumItem(), 1));
         for (int i = 0; i < products.getNumItem(); i++) {
             addItem(products.getItems().get(i), topPanel);
         }
@@ -168,11 +180,11 @@ public class ShoppingCartFrame extends JFrame {
     private void initializeCenterPanel() {
         centerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         centerPanel.setBorder(new TitledBorder(new EtchedBorder(), "ON SALE "));
-        TitledBorder titledBorder = (TitledBorder)centerPanel.getBorder();
+        TitledBorder titledBorder = (TitledBorder) centerPanel.getBorder();
         titledBorder.setTitleFont(new Font("Helvetica", Font.ITALIC, 12));
         titledBorder.setTitleColor(Color.WHITE);
 
-        centerPanel.setBackground(new Color(255,204,203));
+        centerPanel.setBackground(new Color(255, 204, 203));
     }
 
     // MODIFIES: this
@@ -206,6 +218,7 @@ public class ShoppingCartFrame extends JFrame {
                 items.removeFromCart(product.getItemName());
                 updateTotalPrice();
                 updateTotalQuantity();
+                items.removeItemEvent();
             }
         });
     }
@@ -227,6 +240,7 @@ public class ShoppingCartFrame extends JFrame {
                 items.addToCart(product);
                 updateTotalPrice();
                 updateTotalQuantity();
+                items.addItemEvent();
             }
         });
     }
@@ -253,7 +267,7 @@ public class ShoppingCartFrame extends JFrame {
         writeAndReadData();
 
         bottomPanel = new JPanel();
-        bottomPanel.setBackground(new Color(255,168,181));
+        bottomPanel.setBackground(new Color(255, 168, 181));
         bottomPanel.add(saveButton);
         bottomPanel.add(loadButton);
         add(bottomPanel, BorderLayout.SOUTH);
@@ -280,8 +294,8 @@ public class ShoppingCartFrame extends JFrame {
     public void initializeInvoicePanel() {
         rightPanel = new JPanel();
         rightPanel.setBorder(new TitledBorder(new EtchedBorder(), "Invoice "));
-        rightPanel.setBackground(new Color(255,233,224));
-        TitledBorder titledBorder = (TitledBorder)rightPanel.getBorder();
+        rightPanel.setBackground(new Color(255, 233, 224));
+        TitledBorder titledBorder = (TitledBorder) rightPanel.getBorder();
         titledBorder.setTitleFont(new Font("Monospaced", Font.ITALIC, 15));
 
         initializeInvoicePane();
@@ -323,6 +337,7 @@ public class ShoppingCartFrame extends JFrame {
                         + "\n Total Price: " + totalPrice.getText() + "\n"
                         + "\n Thank you for shopping with us!";
                 invoicePane.setText(invoiceItems);
+                items.printInvoiceEvent();
             }
         });
         pack();
@@ -337,25 +352,56 @@ public class ShoppingCartFrame extends JFrame {
         bottomPanel.add(finishShoppingButton);
 
         // MODIFIES: this
-        // EFFECTS: show new frame with thank you image when button clicked
+        // EFFECTS: show new frame with thank you image when button clicked.
+        // when thank you image is closed event log will be printed in console
         finishShoppingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame = new JFrame("Thank you! See you again  ︎◡̈");
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.getContentPane().setBackground(Color.WHITE);
-                frame.setLayout(new FlowLayout());
+                setNewFrame();
 
-                ImageIcon icon = new ImageIcon("./images/thank you.jpg");
-                JLabel label = new JLabel(icon);
-                frame.add(label);
-                frame.pack();
-                frame.setSize(500,500);
-                dispose();
-                frame.setVisible(true);
+                frame.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                        quit();
+                    }
+                });
             }
         });
         pack();
+    }
+
+    // EFFECTS: sets new frame with thank you image
+    private void setNewFrame() {
+        frame = new JFrame("Thank you! See you again  ︎◡̈");
+        frame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.WHITE);
+        frame.setLayout(new FlowLayout());
+
+        ImageIcon icon = new ImageIcon("./images/thank you.jpg");
+        JLabel label = new JLabel(icon);
+        frame.add(label);
+        frame.pack();
+        frame.setSize(500, 500);
+        dispose();
+        frame.setVisible(true);
+    }
+
+    // EFFECTS: button for user to quit shopping,
+    // prints all logs to console when quitting application
+    public void initializeQuitShopping() {
+        quitShoppingButton = new JButton("Quit Shopping");
+        quitShoppingButton.setBounds(100, 100, 100, 4);
+        quitShoppingButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
+        bottomPanel.add(quitShoppingButton);
+
+        // MODIFIES: this
+        // EFFECTS: show new frame with thank you image when button clicked
+        quitShoppingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                quit();
+            }
+        });
     }
 
     // EFFECTS: load and write the data to JSON file
@@ -402,6 +448,17 @@ public class ShoppingCartFrame extends JFrame {
                 }
             }
         });
+    }
+
+    // EFFECTS: prints event that is logged in the event log, including adding items,
+    // removing items, and printing invoice
+    protected void quit() {
+        eventLog = EventLog.getInstance();
+
+        for (Event event : eventLog) {
+            System.out.println(event + "\n");
+        }
+        System.exit(0);
     }
 
 }

@@ -16,11 +16,13 @@ public class ShoppingCart implements Writable {
     private ArrayList<Item> shoppingCartItems; // array list consisting of the items (objects)
     private double price; // add fields to represent changing properties of a shopping cart
     private String cartName;
+    private EventLog eventLog;
 
     // EFFECTS: constructs shopping cart
     public ShoppingCart(String cartName) {
         this.cartName = cartName;
         shoppingCartItems = new ArrayList<>();
+        eventLog = EventLog.getInstance();
     }
 
     // MODIFIES: this
@@ -90,6 +92,7 @@ public class ShoppingCart implements Writable {
         json.put("invoice", printInvoice());
         json.put("cartNumberOfItems", getNumItem());
         json.put("items", itemsToJson());
+     //   EventLog.getInstance().logEvent(new Event("Shopping cart saved!"));
         return json;
     }
 
@@ -102,6 +105,18 @@ public class ShoppingCart implements Writable {
         }
 
         return jsonArray;
+    }
+
+    public void addItemEvent() {
+        eventLog.logEvent(new Event("Item added to shopping cart"));
+    }
+
+    public void removeItemEvent() {
+        eventLog.logEvent(new Event("Item removed from shopping cart"));
+    }
+
+    public void printInvoiceEvent() {
+        eventLog.logEvent(new Event("Invoice of shopping cart printed"));
     }
 }
 

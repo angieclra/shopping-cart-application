@@ -54,7 +54,6 @@ public class Item implements Writable {
         json.put("price", itemPrice);
         json.put("image", itemImage);
         return json;
-
     }
 
 }

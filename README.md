@@ -24,3 +24,40 @@ cart project interest me since it is practical for our daily lives.
 - As a user, I want to be able to see the invoice for my shopping cart
 - As a user, I want to be able to save my current state of the shopping cart to file
 - As a user, I want to be able to load my whole shopping cart from file
+
+## Phase 4: Task 2
+Mon Mar 28 17:21:35 PDT 2022
+Item added to shopping cart
+
+Mon Mar 28 17:21:35 PDT 2022
+Item added to shopping cart
+
+Mon Mar 28 17:21:36 PDT 2022
+Item added to shopping cart
+
+Mon Mar 28 17:21:36 PDT 2022
+Item added to shopping cart
+
+Mon Mar 28 17:21:36 PDT 2022
+Item added to shopping cart
+
+Mon Mar 28 17:21:36 PDT 2022
+Item added to shopping cart
+
+Mon Mar 28 17:21:39 PDT 2022
+Item removed from shopping cart
+
+Mon Mar 28 17:21:39 PDT 2022
+Item removed from shopping cart
+
+Mon Mar 28 17:21:39 PDT 2022
+Item removed from shopping cart
+
+Mon Mar 28 17:21:39 PDT 2022
+Item removed from shopping cart
+
+Mon Mar 28 17:21:39 PDT 2022
+Item removed from shopping cart
+
+Mon Mar 28 17:21:41 PDT 2022
+Invoice of shopping cart printed
