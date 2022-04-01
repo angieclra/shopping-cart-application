@@ -30,6 +30,7 @@ public class ShoppingCart implements Writable {
     public void addToCart(Item item) {
         shoppingCartItems.add(item);
         price += item.getItemPrice();
+        addItemEvent();
     }
 
     // MODIFIES: this
@@ -40,6 +41,7 @@ public class ShoppingCart implements Writable {
             if (item.getItemName().equals(name)) {
                 shoppingCartItems.remove(item);
                 price = getPriceAltogether() - item.getItemPrice();
+                removeItemEvent();
                 return;
             }
         }
@@ -80,6 +82,7 @@ public class ShoppingCart implements Writable {
                     + shoppingCartItems.get(i).getItemName().toUpperCase(Locale.ROOT) + "\nPrice: $"
                     + shoppingCartItems.get(i).getItemPrice() + "\n------------------------------";
         }
+        printInvoiceEvent();
         return content;
     }
 
@@ -107,15 +110,15 @@ public class ShoppingCart implements Writable {
         return jsonArray;
     }
 
-    public void addItemEvent() {
+    private void addItemEvent() {
         eventLog.logEvent(new Event("Item added to shopping cart"));
     }
 
-    public void removeItemEvent() {
+    private void removeItemEvent() {
         eventLog.logEvent(new Event("Item removed from shopping cart"));
     }
 
-    public void printInvoiceEvent() {
+    private void printInvoiceEvent() {
         eventLog.logEvent(new Event("Invoice of shopping cart printed"));
     }
 }

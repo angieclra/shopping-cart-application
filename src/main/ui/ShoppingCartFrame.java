@@ -218,7 +218,7 @@ public class ShoppingCartFrame extends JFrame {
                 items.removeFromCart(product.getItemName());
                 updateTotalPrice();
                 updateTotalQuantity();
-                items.removeItemEvent();
+//                items.removeItemEvent();
             }
         });
     }
@@ -240,7 +240,7 @@ public class ShoppingCartFrame extends JFrame {
                 items.addToCart(product);
                 updateTotalPrice();
                 updateTotalQuantity();
-                items.addItemEvent();
+//                items.addItemEvent();
             }
         });
     }
@@ -337,7 +337,7 @@ public class ShoppingCartFrame extends JFrame {
                         + "\n Total Price: " + totalPrice.getText() + "\n"
                         + "\n Thank you for shopping with us!";
                 invoicePane.setText(invoiceItems);
-                items.printInvoiceEvent();
+//                items.printInvoiceEvent();
             }
         });
         pack();
